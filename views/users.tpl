@@ -30,9 +30,11 @@
                     <td>{{u.birthdate}}</td>
                     
                     <td class="actions">
-                        <a href="/users/edit/{{u.id}}" class="btn btn-sm btn-edit">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
+                        <form action="/users/edit/{{u.id}}" method="get">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                        </form>
 
                         <form action="/users/delete/{{u.id}}" method="post" 
                               onsubmit="return confirm('Tem certeza?')">

@@ -24,7 +24,9 @@
         
         <div class="form-actions">
             <button type="submit" class="btn-submit">Salvar</button>
-            <a href="/users" class="btn-cancel">Voltar</a>
+            <button type="button" onclick="window.location.href='/users'" class="btn-cancel">
+                Voltar
+            </button>
         </div>
     </form>
 </section>
