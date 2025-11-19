@@ -13,9 +13,7 @@ class Prof(User):
 
 
     def __repr__(self):
-        return (f"Prof(id={self.id}, name='{self.name}', email='{self.email}', "
-                f"birthdate='{self.birthdate}', cargo='{self.cargo}')")
-
+        return super().__repr__(self) + ", cargo='{self.cargo}')"
 
     def to_dict(self):
         prof_dict = super().to_dict()
@@ -53,7 +51,7 @@ class ProfModel:
 
     def _save(self):
         with open(self.FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump([u.to_dict() for u in self.profs], f, indent=4, ensure_ascii=False)
+            json.dump([p.to_dict() for p in self.profs], f, indent=4, ensure_ascii=False)
 
 
     def get_all(self):
