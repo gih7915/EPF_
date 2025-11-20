@@ -2,6 +2,7 @@ from bottle import request
 from models.prof import ProfModel, Prof
 from models.login import LoginModel, Login
 from .prof_service import ProfService
+from controllers.prof_controller import prof_controller
 
 class LoginService:
     def __init__(self):
@@ -10,7 +11,7 @@ class LoginService:
     def check(self):
         email = request.forms.get('email')
         senha = request.forms.get('senha')
-        prof = self.prof_service.get_by_email(email)
+        prof = prof_controller.prof_service.get_by_email(email)
         #adicionar o do aluno
         if prof:
             if senha == prof.senha:
