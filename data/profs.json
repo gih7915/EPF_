@@ -4,6 +4,7 @@
         "name": "Maria Soares",
         "email": "mariasoares@gmail.com",
         "birthdate": "2000-10-10",
+        "senha": "jorge",
         "cargo": "Professor"
     }
 ]

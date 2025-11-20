@@ -7,13 +7,14 @@ from .user import User
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class Prof(User):
-    def __init__(self, id, name, email, birthdate, cargo):
-        super().__init__(id, name, email, birthdate)
+    def __init__(self, id, name, email, birthdate, senha, cargo):
+        super().__init__(id, name, email, birthdate, senha)
         self.cargo = cargo
 
 
     def __repr__(self):
         return super().__repr__(self) + ", cargo='{self.cargo}')"
+
 
     def to_dict(self):
         prof_dict = super().to_dict()
@@ -30,6 +31,7 @@ class Prof(User):
             name=data['name'],
             email=data['email'],
             birthdate=data['birthdate'],
+            senha=data['senha'],
             cargo=data['cargo']
         )
 
@@ -60,6 +62,10 @@ class ProfModel:
 
     def get_by_id(self, prof_id: int):
         return next((p for p in self.profs if p.id == prof_id), None)
+    
+
+    def get_by_email(self, prof_email: str):
+        return next((p for p in self.profs if p.email == prof_email), None)
 
 
     def add_prof(self, prof: Prof):

@@ -25,6 +25,10 @@ class ProfService:
 
     def get_by_id(self, prof_id):
         return self.prof_model.get_by_id(prof_id)
+    
+
+    def get_by_email(self, prof_email):
+        return self.prof_model.get_by_email(prof_email)
 
 
     def edit_prof(self, prof):
