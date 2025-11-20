@@ -5,6 +5,7 @@ from typing import List
 from .user import User
 from .prof import Prof, ProfModel
 from services.prof_service import ProfService
+from controllers.prof_controller import prof_controller
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
@@ -22,9 +23,5 @@ class Login():
         return permissions
 
 class LoginModel():
-
     def __init__(self):
-        self.prof_service = ProfService()
-        #adicionar a parte de alunos
-
-
+        self.prof_service = prof_controller.prof_service

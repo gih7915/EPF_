@@ -5,14 +5,12 @@ from .prof_service import ProfService
 
 class LoginService:
     def __init__(self):
-        self.prof_service = ProfService()
+        self.login_model = LoginModel()
 
     def check(self):
         email = request.forms.get('email')
         senha = request.forms.get('senha')
         prof = self.prof_service.get_by_email(email)
-        print(email)
-        print(senha)
         #adicionar o do aluno
         if prof:
             if senha == prof.senha:

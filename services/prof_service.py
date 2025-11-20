@@ -17,9 +17,10 @@ class ProfService:
         name = request.forms.get('name')
         email = request.forms.get('email')
         birthdate = request.forms.get('birthdate')
+        senha = request.forms.get('senha')
         cargo = request.forms.get('cargo')
 
-        prof = Prof(id=new_id, name=name, email=email, birthdate=birthdate, cargo=cargo)
+        prof = Prof(id=new_id, name=name, email=email, birthdate=birthdate, senha=senha, cargo=cargo)
         self.prof_model.add_prof(prof)
 
 
@@ -35,11 +36,13 @@ class ProfService:
         name = request.forms.get('name')
         email = request.forms.get('email')
         birthdate = request.forms.get('birthdate')
+        senha = request.forms.get('senha')
         cargo = request.forms.get('cargo')
 
         prof.name = name
         prof.email = email
         prof.birthdate = birthdate
+        prof.senha = senha
         prof.cargo = cargo
 
         self.prof_model.update_prof(prof)
