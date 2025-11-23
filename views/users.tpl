@@ -1,49 +1,33 @@
 %rebase('layout', title='Usuários')
 
-<section class="users-section">
-    <div class="section-header">
-        <h1 class="section-title"><i class="fas fa-users"></i> Gestão de Usuários</h1>
-        <a href="/users/add" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Novo Usuário
-        </a>
-    </div>
+<h1>Gestão de Usuários</h1>
 
-    <div class="table-container">
-        <table class="styled-table">
-            
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Data Nasc.</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+<a href="/users/add" class="btn btn-success" style="margin-bottom: 20px;">+ Novo Usuário</a>
 
-            <tbody>
-                % for u in users:
-                <tr>
-                    <td>{{u.id}}</td>
-                    <td>{{u.name}}</td>
-                    <td><a href="mailto:{{u.email}}">{{u.email}}</a></td>
-                    <td>{{u.birthdate}}</td>
-                    
-                    <td class="actions">
-                        <button type="button" onclick="window.location.href='/users/edit/{{u.id}}'" class="btn btn-sm btn-primary">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-
-                        <form action="/users/delete/{{u.id}}" method="post" 
-                              onsubmit="return confirm('Tem certeza?')">
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash-alt"></i> Excluir
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                % end
-            </tbody>
-        </table>
-    </div>
-</section>
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #3498db; color: white;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">ID</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Nome</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Email</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Data Nasc.</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        % for u in users:
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">{{u.id}}</td>
+            <td style="padding: 10px;">{{u.name}}</td>
+            <td style="padding: 10px;"><a href="mailto:{{u.email}}">{{u.email}}</a></td>
+            <td style="padding: 10px;">{{u.birthdate}}</td>
+            <td style="padding: 10px;">
+                <button onclick="window.location.href='/users/edit/{{u.id}}'" class="btn" style="background-color: #f39c12; margin-right: 5px;">Editar</button>
+                <form action="/users/delete/{{u.id}}" method="post" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        % end
+    </tbody>
+</table>

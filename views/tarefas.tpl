@@ -1,21 +1,36 @@
 % include('layout.tpl')
-<h2>Tarefas</h2>
+<h1>Tarefas</h1>
 
 % if aluno:
-    <p>Aluno: {{aluno.name}} (Matrícula: {{aluno.matricula}})</p>
+    <div class="aluno-info" style="background: #ecf0f1; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+        <p><strong>Aluno:</strong> {{aluno.name}}</p>
+        <p><strong>Matrícula:</strong> {{aluno.matricula}}</p>
+        <p><strong>Curso:</strong> {{aluno.curso}}</p>
+    </div>
+% else:
+    <p><em>Selecione um aluno para visualizar suas tarefas.</em></p>
 % end
 
-<ul>
+<div class="tarefas-list">
 % for t in tarefas:
-    <li>
-        <strong>{{t.titulo}}</strong> - {{t.disciplina or 'Geral'}}
-        <br>
-        {{t.descricao or ''}}
-        <br>
-        Prazo: {{t.prazo or '—'}}
-        % if aluno:
-            <a href="/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}">Entregar tarefa</a>
+    <div class="tarefa-item">
+        <strong>{{t.titulo}}</strong>
+        <span class="badge badge-info">{{t.disciplina or 'Geral'}}</span>
+        % if t.max_points:
+            <span class="item-meta" style="margin-left: 10px;">Valor: {{t.max_points}} pontos</span>
         % end
-    </li>
+        <p>{{t.descricao or ''}}</p>
+        % if t.prazo:
+            <p class="item-meta">📅 Prazo: <strong>{{t.prazo}}</strong></p>
+        % end
+        % if aluno:
+            % if str(t.id) in (aluno.entregas or {}):
+                <div class="badge badge-success">✓ Entregue</div>
+                <a href="/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}" class="btn" style="margin-top: 10px;">Reenviar Tarefa</a>
+            % else:
+                <a href="/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}" class="btn" style="margin-top: 10px;">Entregar Tarefa</a>
+            % end
+        % end
+    </div>
 % end
-</ul>
+</div>

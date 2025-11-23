@@ -1,51 +1,36 @@
 %rebase('layout', title='Professores')
 
-<section class="profs-section">
-    <div class="section-header">
-        <h1 class="section-title"><i class="fas fa-chalkboard-teacher"></i> Gestão de Professores</h1>
-        <a href="/profs/add" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Novo Professor
-        </a>
-    </div>
+<h1>Gestão de Professores</h1>
 
-    <div class="table-container">
-        <table class="styled-table">
-            
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Data Nasc.</th>
-                    <th>Cargo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+<a href="/profs/add" class="btn btn-success" style="margin-bottom: 20px;">+ Novo Professor</a>
 
-            <tbody>
-                % for p in profs:
-                <tr>
-                    <td>{{p.id}}</td>
-                    <td>{{p.name}}</td>
-                    <td><a href="mailto:{{p.email}}">{{p.email}}</a></td>
-                    <td>{{p.birthdate}}</td>
-                    <td>{{p.cargo}}</td>
-                    
-                    <td class="actions">
-                        <button type="button" onclick="window.location.href='/profs/edit/{{p.id}}'" class="btn btn-sm btn-primary">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-
-                        <form action="/profs/delete/{{p.id}}" method="post" 
-                              onsubmit="return confirm('Tem certeza?')">
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash-alt"></i> Excluir
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                % end
-            </tbody>
-        </table>
-    </div>
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #3498db; color: white;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">ID</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Nome</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Email</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Data Nasc.</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Cargo</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        % for p in profs:
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">{{p.id}}</td>
+            <td style="padding: 10px;">{{p.name}}</td>
+            <td style="padding: 10px;"><a href="mailto:{{p.email}}">{{p.email}}</a></td>
+            <td style="padding: 10px;">{{p.birthdate}}</td>
+            <td style="padding: 10px;">{{p.cargo}}</td>
+            <td style="padding: 10px;">
+                <button onclick="window.location.href='/profs/edit/{{p.id}}'" class="btn" style="background-color: #f39c12; margin-right: 5px;">Editar</button>
+                <form action="/profs/delete/{{p.id}}" method="post" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        % end
+    </tbody>
+</table>
 </section>
