@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Maria Silva",
+        "email": "maria.silva@example.com",
+        "birthdate": "2004-05-10",
+        "senha": "senha123",
+        "matricula": "2025A001",
+        "curso": "Engenharia",
+        "notas": {"Matematica": [8.5, 9.0]},
+        "faltas": {"Matematica": ["2025-11-01"]},
+        "turma": "A1",
+        "ativo": true,
+        "videos_assistidos": ["v1"],
+        "entregas": {}
+    }
+]

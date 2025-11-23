@@ -100,7 +100,7 @@ class Aluno(User):
 
     @classmethod
     def from_dict(cls, data: dict):
-        return cls(
+        obj = cls(
             id=data.get('id'),
             name=data.get('name'),
             email=data.get('email'),
@@ -113,6 +113,14 @@ class Aluno(User):
             turma=data.get('turma'),
             ativo=data.get('ativo', True),
         )
+        # restore optional fields that aren't constructor args
+        videos = data.get('videos_assistidos')
+        if isinstance(videos, list):
+            obj.videos_assistidos = videos
+        entregas = data.get('entregas')
+        if isinstance(entregas, dict):
+            obj.entregas = entregas
+        return obj
 
     def __repr__(self):
         return (

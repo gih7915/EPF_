@@ -1,0 +1,18 @@
+[
+    {
+        "id": "t1",
+        "titulo": "Exercício 1 - Álgebra",
+        "descricao": "Resolva os exercícios do capítulo 1.",
+        "disciplina": "Matematica",
+        "prazo": "2025-12-01",
+        "max_points": 10
+    },
+    {
+        "id": "t2",
+        "titulo": "Resumo Teórico",
+        "descricao": "Faça um resumo das videoaulas.",
+        "disciplina": "Introdução",
+        "prazo": "2025-12-05",
+        "max_points": 5
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "id": "v1",
+        "titulo": "Introdução à Plataforma",
+        "url": "https://www.youtube.com/watch?v=example1",
+        "descricao": "Apresentação do curso e plataforma.",
+        "disciplina": "Introdução",
+        "duracao": 12
+    },
+    {
+        "id": "v2",
+        "titulo": "Aulas de Matemática - Capítulo 1",
+        "url": "https://www.youtube.com/watch?v=example2",
+        "descricao": "Conceitos básicos de álgebra.",
+        "disciplina": "Matematica",
+        "duracao": 35
+    }
+]
