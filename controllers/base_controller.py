@@ -17,8 +17,8 @@ class BaseController:
 
 
     def home_redirect(self):
-        """Redireciona a rota raiz para /users"""
-        return self.redirect('/users')
+        """Redireciona a rota raiz para /home"""
+        return self.redirect('/home')
 
 
     def helper(self):
@@ -33,7 +33,7 @@ class BaseController:
     def render(self, template, nav_dict=lists.default_nav_bar, **context):
         """Método auxiliar para renderizar templates"""
         from bottle import template as render_template
-        return render_template(template, nav_dict=lists.default_nav_bar, **context)
+        return render_template(template, nav_dict=nav_dict, **context)
 
 
     def redirect(self, path, code=302):

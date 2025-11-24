@@ -13,5 +13,20 @@
         "ativo": true,
         "videos_assistidos": [],
         "entregas": {}
+    },
+    {
+        "id": 2,
+        "name": "Juliana",
+        "email": "juliana@gmail.com",
+        "birthdate": "2000-10-10",
+        "senha": "gAAAAABpJOPAv-DybYApmvMC2TwSSa29JT4mWDD6XywmK5GmTpO3Dbj6TvFK7380h7fVMclO3ElytY2LY4KXPKwSnkenTDu2Gg==",
+        "matricula": "12121212",
+        "curso": "Engenharia Aeroespacial",
+        "notas": {},
+        "faltas": {},
+        "turma": null,
+        "ativo": true,
+        "videos_assistidos": [],
+        "entregas": {}
     }
 ]

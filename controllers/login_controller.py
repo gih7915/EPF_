@@ -15,8 +15,9 @@ class LoginController(BaseController):
 
         self.setup_routes()
         self.login_service = LoginService()
+        self.user_logged = None
 
-        self.user_class_name=None
+        self.user_class_name = None
     
     #Rotas de login e sign-up
     def setup_routes(self):
@@ -24,6 +25,7 @@ class LoginController(BaseController):
         self.app.route('/signup', method=['GET', 'POST'], callback=self.signup)
         self.app.route('/signup/wipe', method=['GET', 'POST'], callback=self.signup_wipe)
         self.app.route('/home', method=['GET', 'POST'], callback=self.home)
+        self.app.route('/sair', method='GET', callback=self.sair)
 
 
     def login(self):
@@ -34,8 +36,8 @@ class LoginController(BaseController):
         
         else:  # POST
             try:
-                Login(self.login_service.check())
-                self.redirect('/users')
+                self.user_logged = Login(self.login_service.check())
+                self.redirect('/home')
             except IndexError as e:
                 self.redirect(f'/login?erro={e}')
 
@@ -44,11 +46,11 @@ class LoginController(BaseController):
             return self.render('signup', user_class=self.user_class_name, action="/signup", cursos=lists.cursos)
         else: #POST
             if self.user_class_name == "Prof":
-                prof_controller.prof_service.save()
-                self.redirect('/profs')
+                self.user_logged = prof_controller.prof_service.save()
+                self.redirect('/home')
             elif self.user_class_name == "Aluno":
-                aluno_controller.aluno_service.save()
-                self.redirect('/users')
+                self.user_logged = aluno_controller.aluno_service.save()
+                self.redirect('/home')
             else:
                 self.user_class_name = request.forms.get('tipo')
                 self.redirect(f'/signup?user_class={self.user_class_name}')
@@ -59,7 +61,16 @@ class LoginController(BaseController):
 
     def home(self):
         if request.method == 'GET':
-            return self.render('home', user_class=self.user_class_name, action="/home")
+            if not self.user_logged == None:
+                return self.render('home', action="/home", nav_dict=lists.home_logged_nav_bar)
+            else:
+                return self.render('home', action="/home")
+            
+    def sair(self):
+        if not self.user_logged == None:
+            self.user_logged == None
+        return self.render('home', action="/home")
+
 
 login_routes = Bottle()
 login_controller = LoginController(login_routes)

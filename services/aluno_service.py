@@ -27,6 +27,8 @@ class AlunoService:
         aluno = Aluno(id=new_id, name=name, email=email, birthdate=birthdate, senha=senha, matricula=matricula, curso=curso)
         self.aluno_model.add_aluno(aluno)
 
+        return aluno
+
 
     def get_by_id(self, aluno_id):
         return self.aluno_model.get_by_id(aluno_id)

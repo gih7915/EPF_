@@ -25,6 +25,8 @@ class ProfService:
 
         prof = Prof(id=new_id, name=name, email=email, birthdate=birthdate, senha=senha, cargo=cargo)
         self.prof_model.add_prof(prof)
+        
+        return prof
 
 
     def get_by_id(self, prof_id):

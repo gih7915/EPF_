@@ -6,5 +6,13 @@
         "birthdate": "1999-01-01",
         "senha": "gAAAAABpJLJ5zgJ8ByfgEqIA3GO4WibszdnWOGaCkr1ZSwuUg5_HreFMrtnacxCSJyaktFHqyZXvyxq-VNrJNCphh8u9iiQ4Og==",
         "cargo": "Professor"
+    },
+    {
+        "id": 2,
+        "name": "Jonas",
+        "email": "jonas@gmail.com",
+        "birthdate": "2000-12-11",
+        "senha": "gAAAAABpJODiM3XhwnamZO3VmVMw9HaJ0ne4wbCvh3mLr2cyLdCIQbf-sAQ314TyNTenFkwBIaN7I5rKEsO0GLjop2PYMM9Evg==",
+        "cargo": "Professor"
     }
 ]
