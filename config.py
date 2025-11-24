@@ -1,4 +1,5 @@
 import os
+import base64
 
 class Config:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,3 +17,4 @@ class Config:
 
     # Outras configurações
     SECRET_KEY = 'sua-chave-secreta-aqui'
+    BYTES_KEY = base64.urlsafe_b64encode(SECRET_KEY.encode("utf-8").ljust(32)[:32]) 

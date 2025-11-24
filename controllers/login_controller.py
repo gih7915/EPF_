@@ -1,11 +1,16 @@
 from bottle import Bottle, request
+import json
+import os
+from dataclasses import dataclass, asdict
+from cryptography.fernet import Fernet
 from .base_controller import BaseController
-from .base_controller import erro_mensagens
 from services.login_service import LoginService
 from models.login import Login
 from .prof_controller import prof_controller
 from .aluno_controller import aluno_controller
-from .base_controller import cursos
+from lists import cursos
+from lists import erro_mensagens
+
 
 class LoginController(BaseController):
     def __init__(self, app):
@@ -22,6 +27,7 @@ class LoginController(BaseController):
         self.app.route('/signup', method=['GET', 'POST'], callback=self.signup)
         self.app.route('/signup/wipe', method=['GET', 'POST'], callback=self.signup_wipe)
         self.app.route('/home', method=['GET', 'POST'], callback=self.home)
+
 
     def login(self):
         if request.method == 'GET':

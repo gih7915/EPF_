@@ -1,9 +1,12 @@
 from bottle import request
+from cryptography.fernet import Fernet
+from config import Config
 from models.prof import ProfModel, Prof
 
 class ProfService:
     def __init__(self):
         self.prof_model = ProfModel()
+        self.fernet = Fernet(Config.BYTES_KEY)
 
 
     def get_all(self):
@@ -17,7 +20,7 @@ class ProfService:
         name = request.forms.get('name')
         email = request.forms.get('email')
         birthdate = request.forms.get('birthdate')
-        senha = request.forms.get('senha')
+        senha = self.fernet.encrypt(request.forms.get('senha').encode('utf-8')).decode()
         cargo = request.forms.get('cargo')
 
         prof = Prof(id=new_id, name=name, email=email, birthdate=birthdate, senha=senha, cargo=cargo)

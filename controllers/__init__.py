@@ -5,7 +5,7 @@ from controllers.login_controller import login_routes
 from controllers.aluno_controller import aluno_routes
 
 def init_controllers(app: Bottle):
+    app.merge(login_routes)
     app.merge(user_routes)
     app.merge(prof_routes)
-    app.merge(login_routes)
     app.merge(aluno_routes)

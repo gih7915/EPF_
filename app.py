@@ -1,11 +1,11 @@
 from bottle import Bottle
 from config import Config
+import base64
 
 class App:
     def __init__(self):
         self.bottle = Bottle()
         self.config = Config()
-
 
     def setup_routes(self):
         from controllers import init_controllers
@@ -23,6 +23,6 @@ class App:
             reloader=self.config.RELOADER
         )
 
-
+    
 def create_app():
     return App()

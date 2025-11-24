@@ -1,37 +1,11 @@
 [
     {
         "id": 1,
-        "name": "Maria Silva",
-        "email": "maria.silva@example.com",
-        "birthdate": "2004-05-10",
-        "senha": "senha123",
-        "matricula": "2025A001",
-        "curso": "Engenharia",
-        "notas": {
-            "Matematica": [
-                8.5,
-                9.0
-            ]
-        },
-        "faltas": {
-            "Matematica": [
-                "2025-11-01"
-            ]
-        },
-        "turma": "A1",
-        "ativo": true,
-        "videos_assistidos": [
-            "v1"
-        ],
-        "entregas": {}
-    },
-    {
-        "id": 2,
-        "name": "Arthur",
-        "email": "arthur@email.com.br",
-        "birthdate": "2005-12-12",
-        "senha": "54321",
-        "matricula": null,
+        "name": "Maria",
+        "email": "mariasoares@gmail.com",
+        "birthdate": "1995-12-12",
+        "senha": "gAAAAABpJJ6-gCsBweBBdcGo-itmpBSspiZd5mOpY3dVVRu-RIEiGv26q1A2ogJTS-x0TaFu0EaZG6t9972O7ZEfKJmIi2N5Hw==",
+        "matricula": "241038165",
         "curso": "Engenharia Automotiva",
         "notas": {},
         "faltas": {},

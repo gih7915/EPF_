@@ -1,9 +1,12 @@
 from bottle import request
+from cryptography.fernet import Fernet
+from config import Config
 from models.aluno import AlunoModel, Aluno
 
 class AlunoService:
     def __init__(self):
         self.aluno_model = AlunoModel()
+        self.fernet = Fernet(Config.BYTES_KEY)
 
 
     def get_all(self):
@@ -17,7 +20,7 @@ class AlunoService:
         name = request.forms.get('name')
         email = request.forms.get('email')
         birthdate = request.forms.get('birthdate')
-        senha = request.forms.get('senha')
+        senha = self.fernet.encrypt(request.forms.get('senha').encode('utf-8')).decode()
         matricula = request.forms.get('matricula')
         curso = request.forms.get('curso')
 
