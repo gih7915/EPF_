@@ -4,8 +4,8 @@
     <h1>{{'Login'}}</h1>
 
     % if erro:
-        <div class="erro-login">
-            <p><i>{{erro}}</i></p>
+        <div class="warning">
+            <i>{{erro}}</i>
         </div>
     % end
     

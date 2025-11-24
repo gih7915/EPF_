@@ -156,6 +156,9 @@ class AlunoModel:
 
     def get_by_id(self, aluno_id):
         return next((a for a in self.alunos if a.id == aluno_id), None)
+    
+    def get_by_email(self, aluno_email):
+        return next((a for a in self.alunos if a.email == aluno_email), None)
 
     def add_aluno(self, aluno: Aluno):
         self.alunos.append(aluno)

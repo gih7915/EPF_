@@ -3,6 +3,7 @@ from .base_controller import BaseController
 from services.video_service import VideoService
 from services.tarefa_service import TarefaService
 from services.submissao_service import SubmissaoService
+from services.aluno_service import AlunoService
 from models.aluno import AlunoModel
 from models.submissao import Submissao
 
@@ -15,6 +16,7 @@ class AlunoController(BaseController):
         self.tarefa_service = TarefaService()
         self.submissao_service = SubmissaoService()
         self.aluno_model = AlunoModel()
+        self.aluno_service = AlunoService()
 
         self.setup_routes()
 

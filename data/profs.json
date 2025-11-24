@@ -6,5 +6,13 @@
         "birthdate": "1111-12-12",
         "senha": "piorsenhadomuindo",
         "cargo": "Professor"
+    },
+    {
+        "id": 2,
+        "name": "julio",
+        "email": "julio@email.com",
+        "birthdate": "1999-10-05",
+        "senha": "12345",
+        "cargo": "Professor"
     }
 ]

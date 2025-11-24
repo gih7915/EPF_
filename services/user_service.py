@@ -24,6 +24,7 @@ class UserService:
 
     def get_by_id(self, user_id):
         return self.user_model.get_by_id(user_id)
+    
 
 
     def edit_user(self, user):

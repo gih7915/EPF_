@@ -1,8 +1,11 @@
 from bottle import Bottle, request
 from .base_controller import BaseController
+from .base_controller import erro_mensagens
 from services.login_service import LoginService
 from models.login import Login
 from .prof_controller import prof_controller
+from .aluno_controller import aluno_controller
+from .base_controller import cursos
 
 class LoginController(BaseController):
     def __init__(self, app):
@@ -11,7 +14,6 @@ class LoginController(BaseController):
         self.setup_routes()
         self.login_service = LoginService()
 
-        self.erro=None
         self.user_class_name=None
     
     #Rotas de login e sign-up
@@ -23,28 +25,30 @@ class LoginController(BaseController):
 
     def login(self):
         if request.method == 'GET':
-            print(self.erro)
-            return self.render('login', email=None, senha=None, erro=self.erro, action=f"/login")
-        else: #POST
-            self.erro=None
+            erro_num = request.query.get('erro', '')
+            erro = erro_mensagens.get(erro_num, '')
+            return self.render('login', email=None, senha=None, erro=erro, action="/login")
+        
+        else:  # POST
             try:
                 Login(self.login_service.check())
                 self.redirect('/users')
             except IndexError as e:
-                print(self.erro)
-                self.erro=e
-                self.redirect('/login')
+                self.redirect(f'/login?erro={e}')
 
     def signup(self):
         if request.method == 'GET':
-            return self.render('signup', user_class=self.user_class_name, action="/signup")
+            return self.render('signup', user_class=self.user_class_name, action="/signup", cursos=cursos)
         else: #POST
             if self.user_class_name == "Prof":
                 prof_controller.prof_service.save()
                 self.redirect('/profs')
+            elif self.user_class_name == "Aluno":
+                aluno_controller.aluno_service.save()
+                self.redirect('/users')
             else:
-                self.user_class_name=request.forms.get('tipo')
-                self.redirect('/signup')
+                self.user_class_name = request.forms.get('tipo')
+                self.redirect(f'/signup?user_class={self.user_class_name}')
 
     def signup_wipe(self):
         self.user_class_name=None

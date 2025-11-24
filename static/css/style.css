@@ -86,8 +86,21 @@ body {
 /* Typography */
 h1, h2, h3 {
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   color: var(--primary-color);
+}
+
+.warning {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: rgb(255, 192, 192);
+  border: 2px solid red;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
 }
 
 /* Forms and Inputs */
@@ -139,6 +152,7 @@ input[type="submit"],
 .btn {
   display: inline-block;
   padding: 10px 20px;
+  margin: 5px;
   background-color: var(--primary-color);
   color: white;
   border: none;

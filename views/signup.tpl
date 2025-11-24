@@ -5,9 +5,7 @@
 
     % if user_class == "Prof":
         <h3>do Professor</h3>
-    % end
-
-    % if user_class == "Aluno":
+    % elif user_class == "Aluno":
         <h3>do Aluno</h3>
     % end
     
@@ -37,6 +35,20 @@
                         <option value="Coordenador">Coordenador(a)</option>
                         <option value="Diretor">Diretor(a)</option>
                     </select>
+                </div>
+            % elif user_class == "Aluno":
+                <div class="form-group">
+                    <label for="curso">Curso:</label>
+                    <select id="curso" name="curso" required>
+                        <option value="" disabled selected>Selecione um curso</option>
+                        % for i in cursos:
+                            <option value="{{i}}">{{i}}</option>   
+                        % end
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" id="matricula" name="matricula" required>
                 </div>
             % end
 
