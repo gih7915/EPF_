@@ -14,19 +14,18 @@ class LoginService:
         senha = request.forms.get('senha')
         prof = prof_controller.prof_service.get_by_email(email)
         aluno = aluno_controller.aluno_service.get_by_email(email)
-        erros = 0
         if prof:
             if senha == prof.senha:
                return prof
             else:
-                erros+=1
+                prof = None
         elif aluno:
             if senha == aluno.senha:
                return aluno
             else:
-                erros+=1
+                aluno = None
         else:
             raise IndexError("1")
     
-        if erros == 2:
+        if not(aluno or prof):
             raise IndexError("2")
