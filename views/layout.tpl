@@ -14,7 +14,24 @@
             </div>
             <ul class="nav-menu">
                 % for k, v in nav_dict.items():
-                    <li><a href={{k}}>{{v}}</a></li>
+                    % if "drop" in k:
+                        % links = k.split('|')
+                        % links.pop(0)
+                        % handles = v.split('|')
+                        % handles.pop(0)
+                        <div class="dropdown">
+                            <li><a class="dropbtn" href={{links[0]}}>{{handles[0]}}</a></li>
+                            % links.pop(0)
+                            % handles.pop(0)
+                                <div class="dropdown-content">
+                                    % for i, l in enumerate(links):
+                                        <a href={{l}}>{{handles[i]}}</a>
+                                    % end
+                                </div>
+                        </div>
+                    % else:
+                        <li><a href={{k}}>{{v}}</a></li>
+                    % end
                 % end
             </ul>
         </div>

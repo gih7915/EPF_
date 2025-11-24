@@ -146,6 +146,47 @@ select:focus {
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--primary-color);
+  min-width: 100%;
+  border-radius: 4px;
+  font-size: 100%;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--secondary-color);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn:hover .dropbtn{
+  background-color: var(--secondary-color);
+}
+
 /* Buttons */
 button,
 input[type="submit"],

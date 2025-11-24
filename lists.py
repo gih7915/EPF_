@@ -4,10 +4,17 @@ erro_mensagens = {
     '': ''
 }
 
+#nav_dicts
 default_nav_bar = {
     '/users': 'Usuários',
     '/profs': 'Professores',
-    '/login': 'Login'
+    'drop|/login|/signup': 'drop|Entrar|Cadastrar'
+}
+
+home_logged_nav_bar = {
+    '/users': 'Usuários',
+    '/profs': 'Professores',
+    'drop|/conta|/editar-conta|/sair': 'drop|Conta|Editar|Sair'
 }
 
 cursos = ["Engenharia",
