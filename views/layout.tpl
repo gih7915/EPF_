@@ -13,12 +13,9 @@
                 <a href="/">EPF - Plataforma Educacional</a>
             </div>
             <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/users">Alunos</a></li>
-                <li><a href="/profs">Professores</a></li>
-                <li><a href="/videoaulas?aluno_id=1">Videoaulas</a></li>
-                <li><a href="/tarefas?aluno_id=1">Tarefas</a></li>
-                <li><a href="/login">Login</a></li>
+                % for k, v in nav_dict.items():
+                    <li><a href={{k}}>{{v}}</a></li>
+                % end
             </ul>
         </div>
     </nav>

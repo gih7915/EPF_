@@ -1,4 +1,5 @@
 from bottle import static_file
+import lists
 
 class BaseController:
     def __init__(self, app):
@@ -29,10 +30,10 @@ class BaseController:
         return static_file(filename, root='./static')
 
 
-    def render(self, template, **context):
+    def render(self, template, nav_dict=lists.default_nav_bar, **context):
         """Método auxiliar para renderizar templates"""
         from bottle import template as render_template
-        return render_template(template, **context)
+        return render_template(template, nav_dict=lists.default_nav_bar, **context)
 
 
     def redirect(self, path, code=302):

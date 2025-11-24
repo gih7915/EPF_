@@ -1,6 +1,4 @@
 from bottle import Bottle, request
-import json
-import os
 from dataclasses import dataclass, asdict
 from cryptography.fernet import Fernet
 from .base_controller import BaseController
@@ -8,8 +6,7 @@ from services.login_service import LoginService
 from models.login import Login
 from .prof_controller import prof_controller
 from .aluno_controller import aluno_controller
-from lists import cursos
-from lists import erro_mensagens
+import lists
 
 
 class LoginController(BaseController):
@@ -32,7 +29,7 @@ class LoginController(BaseController):
     def login(self):
         if request.method == 'GET':
             erro_num = request.query.get('erro', '')
-            erro = erro_mensagens.get(erro_num, '')
+            erro = lists.erro_mensagens.get(erro_num, '')
             return self.render('login', email=None, senha=None, erro=erro, action="/login")
         
         else:  # POST
@@ -44,7 +41,7 @@ class LoginController(BaseController):
 
     def signup(self):
         if request.method == 'GET':
-            return self.render('signup', user_class=self.user_class_name, action="/signup", cursos=cursos)
+            return self.render('signup', user_class=self.user_class_name, action="/signup", cursos=lists.cursos)
         else: #POST
             if self.user_class_name == "Prof":
                 prof_controller.prof_service.save()

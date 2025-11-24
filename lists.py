@@ -4,6 +4,12 @@ erro_mensagens = {
     '': ''
 }
 
+default_nav_bar = {
+    '/users': 'Usuários',
+    '/profs': 'Professores',
+    '/login': 'Login'
+}
+
 cursos = ["Engenharia",
           "Engenharia Aeroespacial",
           "Engenharia Automotiva",

@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "jorgelandia",
+        "email": "jorgelandia@gmail.com",
+        "birthdate": "1999-01-01",
+        "senha": "gAAAAABpJLJ5zgJ8ByfgEqIA3GO4WibszdnWOGaCkr1ZSwuUg5_HreFMrtnacxCSJyaktFHqyZXvyxq-VNrJNCphh8u9iiQ4Og==",
+        "cargo": "Professor"
+    }
+]

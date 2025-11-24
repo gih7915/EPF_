@@ -1,6 +1,5 @@
 from bottle import Bottle
 from config import Config
-import base64
 
 class App:
     def __init__(self):
