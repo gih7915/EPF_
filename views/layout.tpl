@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="/static/css/style.css" />
 </head>
 <body>
+    % if nav_dict:
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="/">EPF - Plataforma Educacional</a>
+                <a href="/">📚 EPF - Plataforma Educacional</a>
             </div>
             <ul class="nav-menu">
                 % for k, v in nav_dict.items():
@@ -33,9 +34,11 @@
                         <li><a href={{k}}>{{v}}</a></li>
                     % end
                 % end
+                <li><a href="/sair" style="background-color: rgba(239, 68, 68, 0.2);">🚪 Sair</a></li>
             </ul>
         </div>
     </nav>
+    % end
 
     <div class="container">
         {{!base}}  <!-- O conteúdo das páginas filhas virá aqui -->

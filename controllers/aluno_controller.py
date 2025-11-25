@@ -31,7 +31,8 @@ class AlunoController(BaseController):
         aluno_id = request.query.get('aluno_id')
         aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
         videos = self.video_service.get_all()
-        return self.render('videoaulas', videos=videos, aluno=aluno)
+        import lists
+        return self.render('videoaulas', videos=videos, aluno=aluno, nav_dict=lists.home_logged_nav_bar)
 
     def watch_video(self, video_id):
         aluno_id = request.forms.get('aluno_id')
@@ -48,7 +49,8 @@ class AlunoController(BaseController):
         aluno_id = request.query.get('aluno_id')
         aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
         tarefas = self.tarefa_service.get_all()
-        return self.render('tarefas', tarefas=tarefas, aluno=aluno)
+        import lists
+        return self.render('tarefas', tarefas=tarefas, aluno=aluno, nav_dict=lists.home_logged_nav_bar)
 
     def submit_tarefa(self, tarefa_id):
         if request.method == 'GET':

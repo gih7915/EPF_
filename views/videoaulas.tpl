@@ -1,4 +1,4 @@
-% include('layout.tpl')
+% rebase('layout', title='Videoaulas', nav_dict=nav_dict if 'nav_dict' in locals() else {})
 <h1>Videoaulas</h1>
 
 % if aluno:

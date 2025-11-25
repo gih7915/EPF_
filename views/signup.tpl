@@ -1,12 +1,14 @@
-% rebase('layout', title='Cadastro')
+% rebase('layout', title='Cadastro', nav_dict={})
 
 <section class="form-section">
-    <h1>Cadastro</h1>
+    <h1>✨ Criar Conta</h1>
 
     % if user_class == "Prof":
-        <h3>do Professor</h3>
+        <h3>👨‍🏫 Cadastro do Professor</h3>
     % elif user_class == "Aluno":
-        <h3>do Aluno</h3>
+        <h3>📚 Cadastro do Aluno</h3>
+    % else:
+        <h3>Bem-vindo à plataforma!</h3>
     % end
     
     <form action="{{action}}" method="post" class="form-container">

@@ -26,6 +26,8 @@ class LoginController(BaseController):
         self.app.route('/signup/wipe', method=['GET', 'POST'], callback=self.signup_wipe)
         self.app.route('/home', method=['GET', 'POST'], callback=self.home)
         self.app.route('/sair', method='GET', callback=self.sair)
+        self.app.route('/dashboard/aluno', method='GET', callback=self.dashboard_aluno)
+        self.app.route('/dashboard/professor', method='GET', callback=self.dashboard_professor)
 
 
     def login(self):
@@ -37,7 +39,15 @@ class LoginController(BaseController):
         else:  # POST
             try:
                 self.user_logged = Login(self.login_service.check())
-                self.redirect('/home')
+                
+                # Redirecionar para dashboard específico baseado no tipo de usuário
+                user_type = self.user_logged.entidade.__class__.__name__
+                if user_type == "Prof":
+                    self.redirect('/dashboard/professor')
+                elif user_type == "Aluno":
+                    self.redirect('/dashboard/aluno')
+                else:
+                    self.redirect('/home')
             except IndexError as e:
                 self.redirect(f'/login?erro={e}')
 
@@ -46,11 +56,13 @@ class LoginController(BaseController):
             return self.render('signup', user_class=self.user_class_name, action="/signup", cursos=lists.cursos)
         else: #POST
             if self.user_class_name == "Prof":
-                self.user_logged = prof_controller.prof_service.save()
-                self.redirect('/home')
+                saved_prof = prof_controller.prof_service.save()
+                self.user_logged = Login(saved_prof)
+                self.redirect('/dashboard/professor')
             elif self.user_class_name == "Aluno":
-                self.user_logged = aluno_controller.aluno_service.save()
-                self.redirect('/home')
+                saved_aluno = aluno_controller.aluno_service.save()
+                self.user_logged = Login(saved_aluno)
+                self.redirect('/dashboard/aluno')
             else:
                 self.user_class_name = request.forms.get('tipo')
                 self.redirect(f'/signup?user_class={self.user_class_name}')
@@ -61,15 +73,37 @@ class LoginController(BaseController):
 
     def home(self):
         if request.method == 'GET':
-            if not self.user_logged == None:
-                return self.render('home', action="/home", nav_dict=lists.home_logged_nav_bar)
+            # Redirecionar para login se não estiver autenticado
+            if self.user_logged is None:
+                self.redirect('/login')
             else:
-                return self.render('home', action="/home")
+                # Redirecionar para dashboard apropriado
+                user_type = self.user_logged.entidade.__class__.__name__
+                if user_type == "Prof":
+                    self.redirect('/dashboard/professor')
+                elif user_type == "Aluno":
+                    self.redirect('/dashboard/aluno')
+                else:
+                    return self.render('home', action="/home", nav_dict=lists.home_logged_nav_bar)
             
     def sair(self):
         if not self.user_logged == None:
-            self.user_logged == None
-        return self.render('home', action="/home")
+            self.user_logged = None
+        self.redirect('/login')
+
+    def dashboard_aluno(self):
+        if self.user_logged is None:
+            self.redirect('/login')
+        else:
+            aluno = self.user_logged.entidade
+            return self.render('dashboard_aluno', aluno=aluno, nav_dict=lists.home_logged_nav_bar)
+
+    def dashboard_professor(self):
+        if self.user_logged is None:
+            self.redirect('/login')
+        else:
+            prof = self.user_logged.entidade
+            return self.render('dashboard_prof', prof=prof, nav_dict=lists.home_logged_nav_bar)
 
 
 login_routes = Bottle()

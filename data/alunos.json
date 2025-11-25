@@ -28,5 +28,35 @@
         "ativo": true,
         "videos_assistidos": [],
         "entregas": {}
+    },
+    {
+        "id": 3,
+        "name": "Cristina de Sousa",
+        "email": "cristina123@gmail.com",
+        "birthdate": "2006-02-07",
+        "senha": "gAAAAABpJjHz8swZFAkqJ6AwfGQzZhLNGd3_uAcERMdOAcscO7nIyg5fiknOU3k1WRvvCHZLgVIdyz-Iw-bZ01AZB7JZzuMWDw==",
+        "matricula": "222070897",
+        "curso": "Engenharia de Software",
+        "notas": {},
+        "faltas": {},
+        "turma": null,
+        "ativo": true,
+        "videos_assistidos": [],
+        "entregas": {}
+    },
+    {
+        "id": 4,
+        "name": "Cristina de Sousa",
+        "email": "cristina123@gmail.com",
+        "birthdate": "2006-02-07",
+        "senha": "gAAAAABpJjH9MDWlOEyQEXHwK4eL7mWF8rG3hLt72iKrlZ7-k4mZ5TVdYN66ik02_AHqeLB6Kk8eBdQARgkHVyOt-BV_-B6SBQ==",
+        "matricula": "222070897",
+        "curso": "Engenharia de Software",
+        "notas": {},
+        "faltas": {},
+        "turma": null,
+        "ativo": true,
+        "videos_assistidos": [],
+        "entregas": {}
     }
 ]
