@@ -11,7 +11,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 54,
     "local": "FCTE - S10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -26,7 +26,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 79,
     "local": "FCTE - S2 / S4",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -41,7 +41,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 50,
     "local": "FCTE - S3 / LAB MOCAP",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -56,7 +56,7 @@
     "vagas_ofertadas": 125,
     "vagas_ocupadas": 115,
     "local": "FCTE - S1",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -71,7 +71,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 75,
     "local": "FCTE - MOCAP",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -86,7 +86,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 28,
     "local": "FCTE - MOCAP",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -101,7 +101,7 @@
     "vagas_ofertadas": 110,
     "vagas_ocupadas": 106,
     "local": "FCTE - S3",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -116,7 +116,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 50,
     "local": "FCTE - I10 / S9",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -131,7 +131,7 @@
     "vagas_ofertadas": 110,
     "vagas_ocupadas": 102,
     "local": "FCTE - I9 / S1",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -146,7 +146,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 70,
     "local": "FCTE - MOCAP",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -161,7 +161,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 68,
     "local": "FCTE - I10 / S10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -176,7 +176,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 53,
     "local": "FCTE - S10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -191,7 +191,7 @@
     "vagas_ofertadas": 60,
     "vagas_ocupadas": 59,
     "local": "FCTE - I3",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -206,7 +206,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 77,
     "local": "FCTE - S4",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -221,7 +221,7 @@
     "vagas_ofertadas": 110,
     "vagas_ocupadas": 112,
     "local": "FCTE - S4",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -236,7 +236,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 46,
     "local": "FCTE - I10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -251,7 +251,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 73,
     "local": "FCTE - S10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -266,7 +266,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 80,
     "local": "FCTE - MOCAP",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -281,7 +281,7 @@
     "vagas_ofertadas": 45,
     "vagas_ocupadas": 45,
     "local": "FCTE - I10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   },
   {
@@ -296,7 +296,7 @@
     "vagas_ofertadas": 80,
     "vagas_ocupadas": 78,
     "local": "FCTE - S10",
-    \"senha\": \"123\",
+    "senha": "123",
     "alunos_matriculados": []
   }
 ]
