@@ -6,6 +6,12 @@
 </div>
 
 <div class="dashboard-grid">
+    <a href="/disciplinas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
+        <div class="dashboard-icon">📚</div>
+        <h2 class="dashboard-title">Disciplinas</h2>
+        <p class="dashboard-description">Busque, matricule-se e gerencie suas disciplinas do semestre.</p>
+    </a>
+
     <a href="/videoaulas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">🎬</div>
         <h2 class="dashboard-title">Videoaulas</h2>
