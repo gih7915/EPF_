@@ -1,18 +1,146 @@
 [
     {
         "id": "v1",
-        "titulo": "Introdução à Plataforma",
-        "url": "https://www.youtube.com/watch?v=example1",
-        "descricao": "Apresentação do curso e plataforma.",
-        "disciplina": "Introdução",
-        "duracao": 12
+        "titulo": "Estruturas de Dados 2 - Aula 01: Introdução",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Introdução ao curso de Estruturas de Dados 2, apresentação do conteúdo programático.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 45,
+        "disciplina_codigo": "FGA0030"
     },
     {
         "id": "v2",
-        "titulo": "Aulas de Matemática - Capítulo 1",
-        "url": "https://www.youtube.com/watch?v=example2",
-        "descricao": "Conceitos básicos de álgebra.",
-        "disciplina": "Matematica",
-        "duracao": 35
+        "titulo": "Estruturas de Dados 2 - Aula 02: Árvores Binárias",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Conceitos fundamentais de árvores binárias, operações básicas e aplicações.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 60,
+        "disciplina_codigo": "FGA0030"
+    },
+    {
+        "id": "v3",
+        "titulo": "Estruturas de Dados 2 - Aula 03: Árvores AVL",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Árvores balanceadas AVL, rotações e implementação.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 55,
+        "disciplina_codigo": "FGA0030"
+    },
+    {
+        "id": "v4",
+        "titulo": "Projeto de Algoritmos - Aula 01: Dividir e Conquistar",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Técnica de dividir e conquistar, exemplos práticos e análise de complexidade.",
+        "disciplina": "Projeto de Algoritmos",
+        "duracao": 50,
+        "disciplina_codigo": "FGA0124"
+    },
+    {
+        "id": "v5",
+        "titulo": "Projeto de Algoritmos - Aula 02: Programação Dinâmica",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Introdução à programação dinâmica, memoização e tabulação.",
+        "disciplina": "Projeto de Algoritmos",
+        "duracao": 65,
+        "disciplina_codigo": "FGA0124"
+    },
+    {
+        "id": "v6",
+        "titulo": "Banco de Dados 1 - Aula 01: Modelo Relacional",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Fundamentos do modelo relacional, tabelas, chaves e relacionamentos.",
+        "disciplina": "Banco de Dados 1",
+        "duracao": 40,
+        "disciplina_codigo": "FGA0137"
+    },
+    {
+        "id": "v7",
+        "titulo": "Banco de Dados 1 - Aula 02: SQL Básico",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Comandos SQL básicos: SELECT, INSERT, UPDATE, DELETE.",
+        "disciplina": "Banco de Dados 1",
+        "duracao": 55,
+        "disciplina_codigo": "FGA0137"
+    },
+    {
+        "id": "v8",
+        "titulo": "Banco de Dados 1 - Aula 03: Joins e Subconsultas",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Operações de junção e subconsultas em SQL.",
+        "disciplina": "Banco de Dados 1",
+        "duracao": 50,
+        "disciplina_codigo": "FGA0137"
+    },
+    {
+        "id": "v9",
+        "titulo": "Orientação a Objetos - Aula 01: Conceitos Fundamentais",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Classes, objetos, encapsulamento e abstração.",
+        "disciplina": "Orientação a Objetos",
+        "duracao": 45,
+        "disciplina_codigo": "FGA0158"
+    },
+    {
+        "id": "v10",
+        "titulo": "Orientação a Objetos - Aula 02: Herança e Polimorfismo",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Herança, polimorfismo e interfaces em POO.",
+        "disciplina": "Orientação a Objetos",
+        "duracao": 60,
+        "disciplina_codigo": "FGA0158"
+    },
+    {
+        "id": "v11",
+        "titulo": "Compiladores - Aula 01: Análise Léxica",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Introdução à análise léxica, tokens e expressões regulares.",
+        "disciplina": "Compiladores 1",
+        "duracao": 50,
+        "disciplina_codigo": "FGA0003"
+    },
+    {
+        "id": "v12",
+        "titulo": "Compiladores - Aula 02: Análise Sintática",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Gramáticas livres de contexto e parsers.",
+        "disciplina": "Compiladores 1",
+        "duracao": 55,
+        "disciplina_codigo": "FGA0003"
+    },
+    {
+        "id": "v13",
+        "titulo": "IHC - Aula 01: Princípios de Design",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Princípios fundamentais de design de interfaces.",
+        "disciplina": "Interação Humano Computador",
+        "duracao": 40,
+        "disciplina_codigo": "FGA0173"
+    },
+    {
+        "id": "v14",
+        "titulo": "IHC - Aula 02: Usabilidade",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Conceitos de usabilidade e avaliação heurística.",
+        "disciplina": "Interação Humano Computador",
+        "duracao": 45,
+        "disciplina_codigo": "FGA0173"
+    },
+    {
+        "id": "v15",
+        "titulo": "Arquitetura de Software - Aula 01: Padrões Arquiteturais",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "MVC, MVP, MVVM e outros padrões arquiteturais.",
+        "disciplina": "Arquitetura e Desenho de Software",
+        "duracao": 50,
+        "disciplina_codigo": "FGA0208"
+    },
+    {
+        "id": "v16",
+        "titulo": "Arquitetura de Software - Aula 02: Design Patterns",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "descricao": "Padrões de projeto GoF: Singleton, Factory, Observer.",
+        "disciplina": "Arquitetura e Desenho de Software",
+        "duracao": 60,
+        "disciplina_codigo": "FGA0208"
     }
 ]

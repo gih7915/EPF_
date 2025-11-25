@@ -4,8 +4,10 @@ from services.video_service import VideoService
 from services.tarefa_service import TarefaService
 from services.submissao_service import SubmissaoService
 from services.aluno_service import AlunoService
+from services.disciplina_service import DisciplinaService
 from models.aluno import AlunoModel
 from models.submissao import Submissao
+import lists
 
 
 class AlunoController(BaseController):
@@ -17,6 +19,7 @@ class AlunoController(BaseController):
         self.submissao_service = SubmissaoService()
         self.aluno_model = AlunoModel()
         self.aluno_service = AlunoService()
+        self.disciplina_service = DisciplinaService()
 
         self.setup_routes()
 
@@ -29,21 +32,59 @@ class AlunoController(BaseController):
 
     def list_videos(self):
         aluno_id = request.query.get('aluno_id')
-        aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
-        videos = self.video_service.get_all()
-        import lists
-        return self.render('videoaulas', videos=videos, aluno=aluno, nav_dict=lists.home_logged_nav_bar)
+        disciplina_codigo = request.query.get('disciplina_codigo')
+        
+        if not aluno_id:
+            return "Aluno não informado"
+        
+        aluno = self.aluno_model.get_by_id(int(aluno_id))
+        if not aluno:
+            return "Aluno não encontrado"
+        
+        # Pegar disciplinas matriculadas
+        disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
+        
+        # Pegar todas as videoaulas
+        todas_videos = self.video_service.get_all()
+        
+        # Filtrar vídeos pela disciplina selecionada ou mostrar todas
+        if disciplina_codigo:
+            videos = [v for v in todas_videos if v.disciplina_codigo == disciplina_codigo]
+            disciplina_selecionada = next((d for d in disciplinas_matriculadas if d.codigo == disciplina_codigo), None)
+        else:
+            # Mostrar apenas vídeos das disciplinas matriculadas
+            codigos_matriculados = [d.codigo for d in disciplinas_matriculadas]
+            videos = [v for v in todas_videos if v.disciplina_codigo in codigos_matriculados]
+            disciplina_selecionada = None
+        
+        return self.render('videoaulas', 
+                         videos=videos, 
+                         aluno=aluno,
+                         disciplinas_matriculadas=disciplinas_matriculadas,
+                         disciplina_selecionada=disciplina_selecionada,
+                         nav_dict=lists.home_logged_nav_bar)
 
     def watch_video(self, video_id):
         aluno_id = request.forms.get('aluno_id')
         if not aluno_id:
             return "Aluno não informado"
+        
         aluno = self.aluno_model.get_by_id(int(aluno_id))
         if not aluno:
             return "Aluno não encontrado"
-        aluno.assistir_video(video_id)
-        self.aluno_model.update_aluno(aluno)
-        self.redirect(f"/videoaulas?aluno_id={aluno_id}")
+        
+        # Marcar vídeo como assistido
+        if video_id not in aluno.videos_assistidos:
+            aluno.assistir_video(video_id)
+            self.aluno_model.update_aluno(aluno)
+        
+        # Redirecionar de volta para a página de vídeos
+        disciplina_codigo = request.forms.get('disciplina_codigo', '')
+        redirect_url = f"/videoaulas?aluno_id={aluno_id}"
+        if disciplina_codigo:
+            redirect_url += f"&disciplina_codigo={disciplina_codigo}"
+        
+        self.redirect(redirect_url)
 
     def list_tarefas(self):
         aluno_id = request.query.get('aluno_id')
