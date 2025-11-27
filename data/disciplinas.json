@@ -57,7 +57,7 @@
     "vagas_ocupadas": 115,
     "local": "FCTE - S1",
     "senha": "123",
-    "alunos_matriculados": []
+    "alunos_matriculados": [1]
   },
   {
     "id": 5,

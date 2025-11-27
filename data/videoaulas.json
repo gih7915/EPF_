@@ -143,4 +143,32 @@
         "duracao": 60,
         "disciplina_codigo": "FGA0208"
     }
+    ,
+    {
+        "id": "ex_v1",
+        "titulo": "Exemplo: Boas-vindas à Videoaula 1",
+        "url": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+        "descricao": "Vídeo de exemplo 1 para demonstrar a exibição no sistema.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 8,
+        "disciplina_codigo": "FGA0030"
+    },
+    {
+        "id": "ex_v2",
+        "titulo": "Exemplo: Tutorial Rápido 2",
+        "url": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+        "descricao": "Vídeo de exemplo 2 — conteúdo fictício para demonstração.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 12,
+        "disciplina_codigo": "FGA0030"
+    },
+    {
+        "id": "ex_v3",
+        "titulo": "Exemplo: Exercício Comentado 3",
+        "url": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+        "descricao": "Vídeo de exemplo 3 com explicação de exercícios.",
+        "disciplina": "Estruturas de Dados 2",
+        "duracao": 15,
+        "disciplina_codigo": "FGA0030"
+    }
 ]
