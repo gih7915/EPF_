@@ -18,13 +18,13 @@
         <p class="dashboard-description">Acesse as aulas gravadas, assista e acompanhe seu progresso de aprendizado.</p>
     </a>
 
-    <a href="/minhas-notas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/minhas_notas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">📊</div>
         <h2 class="dashboard-title">Minhas Notas</h2>
         <p class="dashboard-description">Visualize suas notas por disciplina e acompanhe seu desempenho acadêmico.</p>
     </a>
 
-    <a href="/minhas-faltas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/minhas_faltas?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">📅</div>
         <h2 class="dashboard-title">Controle de Faltas</h2>
         <p class="dashboard-description">Verifique suas faltas por disciplina e fique atento à sua frequência.</p>
@@ -36,7 +36,7 @@
         <p class="dashboard-description">Veja suas tarefas pendentes, submeta trabalhos e acompanhe prazos.</p>
     </a>
 
-    <a href="/meu-perfil?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/meu_perfil?aluno_id={{aluno.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">👤</div>
         <h2 class="dashboard-title">Meu Perfil</h2>
         <p class="dashboard-description">Gerencie suas informações pessoais e preferências do sistema.</p>

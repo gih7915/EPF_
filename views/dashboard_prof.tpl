@@ -6,43 +6,43 @@
 </div>
 
 <div class="dashboard-grid">
-    <a href="/lancar-notas" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/lancar_notas" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">📝</div>
         <h2 class="dashboard-title">Lançar Notas</h2>
         <p class="dashboard-description">Registre e gerencie as notas dos alunos por disciplina e avaliação.</p>
     </a>
 
-    <a href="/lancar-faltas" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/lancar_faltas" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">📋</div>
         <h2 class="dashboard-title">Registrar Faltas</h2>
         <p class="dashboard-description">Faça o controle de presença e ausências dos seus alunos.</p>
     </a>
 
-    <a href="/criar-atividade" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/criar_atividade" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">📚</div>
         <h2 class="dashboard-title">Criar Atividades</h2>
         <p class="dashboard-description">Crie tarefas, trabalhos e exercícios para suas turmas.</p>
     </a>
 
-    <a href="/postar-videoaula" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/postar_videoaula" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">🎥</div>
         <h2 class="dashboard-title">Postar Videoaulas</h2>
         <p class="dashboard-description">Compartilhe aulas gravadas e materiais de apoio com os alunos.</p>
     </a>
 
-    <a href="/enviar-recado" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/enviar_recado" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">💬</div>
         <h2 class="dashboard-title">Enviar Recados</h2>
         <p class="dashboard-description">Comunique-se com alunos através de avisos e mensagens importantes.</p>
     </a>
 
-    <a href="/visualizar-turmas" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/visualizar_turmas" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">👥</div>
         <h2 class="dashboard-title">Minhas Turmas</h2>
         <p class="dashboard-description">Visualize as turmas sob sua responsabilidade e informações dos alunos.</p>
     </a>
 
-    <a href="/avaliar-trabalhos" class="dashboard-card" style="text-decoration: none; color: inherit;">
+    <a href="/avaliar_trabalhos" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">✅</div>
         <h2 class="dashboard-title">Avaliar Trabalhos</h2>
         <p class="dashboard-description">Corrija e avalie os trabalhos submetidos pelos alunos.</p>

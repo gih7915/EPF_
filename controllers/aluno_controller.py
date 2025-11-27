@@ -30,6 +30,8 @@ class AlunoController(BaseController):
         self.app.route('/tarefas', method=['GET'], callback=self.list_tarefas)
         self.app.route('/tarefas/submit/<tarefa_id>', method=['GET', 'POST'], callback=self.submit_tarefa)
 
+        self.app.route('/minhas_notas', method=['GET', 'POST'], callback=self.mostra_notas)
+
     def list_videos(self):
         aluno_id = request.query.get('aluno_id')
         disciplina_codigo = request.query.get('disciplina_codigo')
@@ -116,6 +118,14 @@ class AlunoController(BaseController):
                 self.aluno_model.update_aluno(aluno)
 
             self.redirect(f"/tarefas?aluno_id={aluno_id}")
+
+    def mostra_notas(self):
+        if request.method == 'GET':
+            aluno_id = request.query.get('aluno_id')
+            return self.render('minhas_notas', aluno_id=aluno_id)
+        else:
+            self.redirect(f"/dashboard/aluno")
+
 
 
 aluno_routes = Bottle()
