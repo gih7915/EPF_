@@ -7,11 +7,11 @@
 <table style="width: 100%; border-collapse: collapse;">
     <thead>
         <tr style="background-color: #3498db; color: white;">
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">ID</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Nome</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Email</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Data Nasc.</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #2980b9;">Ações</th>
+            <th class="user-lists-header">ID</th>
+            <th class="user-lists-header">Nome</th>
+            <th class="user-lists-header">Email</th>
+            <th class="user-lists-header">Data Nasc.</th>
+            <th class="user-lists-header">Ações</th>
         </tr>
     </thead>
     <tbody>

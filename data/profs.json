@@ -14,5 +14,13 @@
         "birthdate": "2000-12-11",
         "senha": "gAAAAABpJODiM3XhwnamZO3VmVMw9HaJ0ne4wbCvh3mLr2cyLdCIQbf-sAQ314TyNTenFkwBIaN7I5rKEsO0GLjop2PYMM9Evg==",
         "cargo": "Professor"
+    },
+    {
+        "id": 3,
+        "name": "Andrea",
+        "email": "andrea@gmail.com",
+        "birthdate": "2000-11-19",
+        "senha": "gAAAAABpKjhPBDgLgeiyINEhooRxwVfJ0hNwsmMvOGGJOTuBKs6bVW4Ym4o5DDfR79dMDalK4xG-LBlgUxQZPkZSIIfBzu8VJQ==",
+        "cargo": "Professor"
     }
 ]

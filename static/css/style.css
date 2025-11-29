@@ -161,6 +161,18 @@ h3 {
   animation: slideIn 0.3s ease-out;
 }
 
+.table-header {
+  text-align:left;
+  padding:8px;
+  border-bottom:1px solid #ddd;
+}
+
+.user-lists-header {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #2980b9;
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(-20px);

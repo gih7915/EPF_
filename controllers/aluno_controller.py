@@ -31,6 +31,7 @@ class AlunoController(BaseController):
         self.app.route('/tarefas/submit/<tarefa_id>', method=['GET', 'POST'], callback=self.submit_tarefa)
 
         self.app.route('/minhas_notas', method=['GET', 'POST'], callback=self.mostra_notas)
+        self.app.route('/minhas_faltas', method=['GET', 'POST'], callback=self.mostra_faltas)
 
     def list_videos(self):
         aluno_id = request.query.get('aluno_id')
@@ -158,6 +159,17 @@ class AlunoController(BaseController):
                                notas_entries=notas_entries,
                                media=media,
                                nav_dict=lists.home_logged_nav_bar)
+        else:
+            self.redirect(f"/dashboard/aluno")
+
+    def mostra_faltas(self):
+        if request.method == 'GET':
+            aluno_id = request.query.get('aluno_id')
+
+            aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
+            
+            return self.render('minhas_faltas',
+                               aluno=aluno, nav_dict=lists.home_logged_nav_bar)
         else:
             self.redirect(f"/dashboard/aluno")
 

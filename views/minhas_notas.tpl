@@ -14,7 +14,7 @@
         <input type="hidden" name="aluno_id" value="{{aluno.id}}">
         <label for="disciplina_codigo">Selecione a disciplina:</label>
         <select name="disciplina_codigo" id="disciplina_codigo" style="margin-left:8px;">
-            <option value="">-- Escolha --</option>
+            <option value="" disabled selected>Selecione</option>
             % for d in (disciplinas_matriculadas or []):
                 <option value="{{d.codigo}}" % if disciplina_selecionada and disciplina_selecionada.codigo == d.codigo: selected % end>{{d.codigo}} - {{d.nome}}</option>
             % end
@@ -32,10 +32,10 @@
             <table class="table" style="width:100%; border-collapse:collapse;">
                 <thead>
                     <tr>
-                        <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Avaliação / Tarefa</th>
-                        <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Entrega</th>
-                        <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Nota</th>
-                        <th style="text-align:left; padding:8px; border-bottom:1px solid #ddd;">Feedback</th>
+                        <th class="table-header">Avaliação / Tarefa</th>
+                        <th class="table-header">Entrega</th>
+                        <th class="table-header">Nota</th>
+                        <th class="table-header">Feedback</th>
                     </tr>
                 </thead>
                 <tbody>

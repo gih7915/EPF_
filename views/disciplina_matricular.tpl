@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-body">
             <p><strong>Turma:</strong> {{disciplina.turma}}</p>
-            <p><strong>Professor:</strong> {{disciplina.docente}}</p>
+            <p><strong>Professor:</strong> {{disciplina.docente.name}}</p>
             <p><strong>Horário:</strong> {{disciplina.horario}}</p>
             <p><strong>Local:</strong> {{disciplina.local}}</p>
             <p><strong>Vagas Disponíveis:</strong> {{disciplina.vagas_ofertadas - disciplina.vagas_ocupadas}}</p>

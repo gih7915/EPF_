@@ -29,7 +29,7 @@ class ProfService:
         return prof
 
 
-    def get_by_id(self, prof_id):
+    def get_by_id(self, prof_id: str):
         return self.prof_model.get_by_id(prof_id)
     
 

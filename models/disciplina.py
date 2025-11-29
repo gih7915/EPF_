@@ -1,6 +1,7 @@
 import json
 import os
 from typing import Optional, List
+from controllers.prof_controller import prof_controller
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
@@ -30,7 +31,7 @@ class Disciplina:
         nome: str,
         turma: str,
         ano_periodo: str,
-        docente: str,
+        docente_id: str,
         carga_horaria: str,
         horario: str,
         vagas_ofertadas: int,
@@ -44,7 +45,7 @@ class Disciplina:
         self.nome = nome
         self.turma = turma
         self.ano_periodo = ano_periodo
-        self.docente = docente
+        self.docente = prof_controller.prof_service.get_by_id(docente_id)
         self.carga_horaria = carga_horaria
         self.horario = horario
         self.vagas_ofertadas = vagas_ofertadas
@@ -63,7 +64,7 @@ class Disciplina:
             'nome': self.nome,
             'turma': self.turma,
             'ano_periodo': self.ano_periodo,
-            'docente': self.docente,
+            'docente_id': self.docente.__getattribute__(id),
             'carga_horaria': self.carga_horaria,
             'horario': self.horario,
             'vagas_ofertadas': self.vagas_ofertadas,
@@ -81,7 +82,7 @@ class Disciplina:
             nome=data['nome'],
             turma=data['turma'],
             ano_periodo=data['ano_periodo'],
-            docente=data['docente'],
+            docente_id=data['docente_id'],
             carga_horaria=data['carga_horaria'],
             horario=data['horario'],
             vagas_ofertadas=data['vagas_ofertadas'],
