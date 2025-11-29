@@ -118,6 +118,10 @@ class DisciplinaModel:
 
     def __init__(self):
         self.disciplinas = self._load()
+        for d in self.disciplinas:
+            for p in prof_controller.prof_service.get_all():
+                if d.docente.id == p.id:
+                    p.disciplinas.append(d)
 
     def _load(self):
         if not os.path.exists(self.FILE_PATH):

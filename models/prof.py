@@ -1,7 +1,7 @@
 import json
 import os
 from dataclasses import dataclass, asdict
-from typing import List
+from typing import Optional,List
 from .user import User
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
@@ -10,6 +10,7 @@ class Prof(User):
     def __init__(self, id, name, email, birthdate, senha, cargo):
         super().__init__(id, name, email, birthdate, senha)
         self.cargo = cargo
+        self.disciplinas = []
 
 
     def __repr__(self):
@@ -32,7 +33,8 @@ class Prof(User):
             email=data['email'],
             birthdate=data['birthdate'],
             senha=data['senha'],
-            cargo=data['cargo']
+            cargo=data['cargo'],
+            disciplinas=data['disciplina']
         )
 
 
