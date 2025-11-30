@@ -165,11 +165,48 @@ class AlunoController(BaseController):
     def mostra_faltas(self):
         if request.method == 'GET':
             aluno_id = request.query.get('aluno_id')
+            disciplina_codigo = request.query.get('disciplina_codigo')
 
             aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
-            
+            disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id)) if aluno else []
+
+            # montar lista de entradas de faltas por disciplina
+            faltas_entries = []
+
+            # mapa codigo -> disciplina obj para lookup
+            disciplinas_map = {d.codigo: d for d in disciplinas_matriculadas}
+
+            # considerar todas as chaves presentes no objeto aluno.faltas
+            if aluno:
+                codigo_set = set(list(aluno.faltas.keys()) + [d.codigo for d in disciplinas_matriculadas])
+            else:
+                codigo_set = set()
+
+            for codigo in sorted(codigo_set):
+                disc = disciplinas_map.get(codigo)
+                datas = aluno.faltas.get(codigo, []) if aluno else []
+                faltas_entries.append({
+                    'codigo': codigo,
+                    'nome': getattr(disc, 'nome', '—') if disc else '—',
+                    'datas': datas,
+                    'total': len(datas)
+                })
+
+            disciplina_selecionada = None
+            if disciplina_codigo and aluno:
+                disciplina_selecionada = next((d for d in disciplinas_matriculadas if d.codigo == disciplina_codigo), None)
+                # filtrar entries
+                faltas_entries = [e for e in faltas_entries if e['codigo'] == disciplina_codigo]
+
+            total_faltas = aluno.total_faltas() if aluno else 0
+
             return self.render('minhas_faltas',
-                               aluno=aluno, nav_dict=lists.home_logged_nav_bar)
+                               aluno=aluno,
+                               disciplinas_matriculadas=disciplinas_matriculadas,
+                               disciplina_selecionada=disciplina_selecionada,
+                               faltas_entries=faltas_entries,
+                               total_faltas=total_faltas,
+                               nav_dict=lists.home_logged_nav_bar)
         else:
             self.redirect(f"/dashboard/aluno")
 
