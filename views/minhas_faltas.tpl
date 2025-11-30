@@ -35,9 +35,15 @@
             <tbody>
             % for e in faltas_entries:
                 <tr>
+                    % str="-"
+                    % if e['datas']: 
+                        {{', '.join(e['datas'])}} 
+                    % if e['total'] > 0:
+                        str=e['datas']
+                    % end
                     <td style="padding:8px; border-bottom:1px solid #f1f1f1;">{{e['codigo']}} - {{e['nome']}}</td>
                     <td style="padding:8px; border-bottom:1px solid #f1f1f1; text-align:center;">{{e['total']}}</td>
-                    <td style="padding:8px; border-bottom:1px solid #f1f1f1;">% if e['datas']: {{', '.join(e['datas'])}} % else: - % end</td>
+                    <td style="padding:8px; border-bottom:1px solid #f1f1f1;">{{str}}</td>
                 </tr>
             % end
             </tbody>
