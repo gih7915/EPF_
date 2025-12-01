@@ -6,5 +6,21 @@
         "birthdate": "1999-12-12",
         "senha": "gAAAAABpKnvKtu_ckOaJxAMMqpCJ4AVTCakVNU7exZ03SPYAOpjdYheX7msmNpFeHWczhN1O5b9O9-kWJKTZZc9nHTQuZo03EQ==",
         "cargo": "Professor"
+    },
+    {
+        "id": 2,
+        "name": "Alexandre",
+        "email": "alex@gmail.com",
+        "birthdate": "1984-05-02",
+        "senha": "gAAAAABpLfADwwH7hgjXSh_11QHA6ov90PceUD2y-wYvxmTMTOvFr0QQKQlxSR5nVHuXxdtgPJUw_AjnK90j2dZ5z7-Y8mDXsg==",
+        "cargo": "Professor"
+    },
+    {
+        "id": 3,
+        "name": "JoÃ£o Victor Silva Fernandes",
+        "email": "joao@gmail.com",
+        "birthdate": "2004-02-08",
+        "senha": "gAAAAABpLfS1vnZanoxGPy0ki3O5lxGD5v17KK2aQf6ymkMWoHWWaMKqhE7lY4rrnZ0_zR99DAz-x87SxxGVT88Lq0AZ_rqgpQ==",
+        "cargo": "Professor"
     }
 ]

@@ -59,6 +59,11 @@ class DisciplinaService:
         todas = self.get_all()
         return [d for d in todas if aluno_id in d.alunos_matriculados]
 
+    def get_disciplinas_professor(self, prof_id: int):
+        """Retorna todas as disciplinas onde o professor é o docente."""
+        todas = self.get_all()
+        return [d for d in todas if d.docente_id == prof_id]
+
     def atribuir_docente(self, disciplina_id: int, prof_id: int):
         """Atribui um docente à disciplina (professor se inscreve)."""
         disciplina = self.get_by_id(disciplina_id)

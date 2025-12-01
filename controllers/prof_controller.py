@@ -4,7 +4,6 @@ from services.prof_service import ProfService
 from services.tarefa_service import TarefaService
 from services.video_service import VideoService
 from services.disciplina_service import DisciplinaService
-from .login_controller import login_controller
 
 class ProfController(BaseController):
     def __init__(self, app):
@@ -15,6 +14,13 @@ class ProfController(BaseController):
         self.tarefa_service = TarefaService()
         self.video_service = VideoService()
         self.disciplina_service = DisciplinaService()
+    
+    def _get_logged_prof(self):
+        """Helper para obter professor logado via login_controller"""
+        from .login_controller import login_controller
+        if login_controller.user_logged and login_controller.user_logged.entidade.__class__.__name__ == "Prof":
+            return login_controller.user_logged.entidade
+        return None
 
 
     # Rotas Prof
@@ -33,25 +39,35 @@ class ProfController(BaseController):
         self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
         self.app.route('/relatorios', method='GET', callback=self.relatorios)
     def lancar_notas(self):
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        
         if request.method == 'GET':
-            return self.render('lancar_notas')
+            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+            return self.render('lancar_notas', minhas_turmas=minhas_turmas, prof=prof)
         else:
             # Aqui você pode adicionar a lógica para salvar a nota
-            # Exemplo: disciplina = request.forms.get('disciplina')
+            # Exemplo: disciplina_id = request.forms.get('disciplina_id')
             # aluno = request.forms.get('aluno')
             # nota = request.forms.get('nota')
-            # self.prof_service.lancar_nota(disciplina, aluno, nota)
+            # self.prof_service.lancar_nota(disciplina_id, aluno, nota)
             self.redirect('/dashboard_prof')
 
     def lancar_faltas(self):
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        
         if request.method == 'GET':
-            return self.render('lancar_faltas')
+            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+            return self.render('lancar_faltas', minhas_turmas=minhas_turmas, prof=prof)
         else:
             # Aqui você pode adicionar a lógica para salvar as faltas
-            # Exemplo: disciplina = request.forms.get('disciplina')
+            # Exemplo: disciplina_id = request.forms.get('disciplina_id')
             # aluno = request.forms.get('aluno')
             # faltas = request.forms.get('faltas')
-            # self.prof_service.lancar_falta(disciplina, aluno, faltas)
+            # self.prof_service.lancar_falta(disciplina_id, aluno, faltas)
             self.redirect('/dashboard_prof')
 
     def criar_atividade(self):
@@ -94,17 +110,27 @@ class ProfController(BaseController):
         return self.render('recados')
 
     def visualizar_turmas(self):
-        disciplinas = self.disciplina_service.get_all()
-        return self.render('visualizar_turmas', disciplinas=disciplinas)
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        
+        todas = self.disciplina_service.get_all()
+        minhas_turmas = [d for d in todas if d.docente_id == prof.id]
+        disponiveis = [d for d in todas if d.docente_id is None or d.docente_id == 0]
+        
+        return self.render('visualizar_turmas', 
+                         minhas_turmas=minhas_turmas, 
+                         disponiveis=disponiveis,
+                         prof=prof)
 
     def inscrever_docente(self):
-        disciplina_id = int(request.forms.get('disciplina_id'))
-        # Usa o professor logado; não requer código/ID no formulário
-        if login_controller.user_logged is None:
+        prof = self._get_logged_prof()
+        if not prof:
             return self.redirect('/login')
-        prof_id = int(login_controller.user_logged.entidade.id)
+        
+        disciplina_id = int(request.forms.get('disciplina_id'))
         try:
-            self.disciplina_service.atribuir_docente(disciplina_id, prof_id)
+            self.disciplina_service.atribuir_docente(disciplina_id, prof.id)
             return self.redirect('/visualizar_turmas')
         except Exception as e:
             return f"Erro: {str(e)}"
