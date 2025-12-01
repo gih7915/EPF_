@@ -34,7 +34,6 @@
                 % if not d.docente_id:
                 <form method="post" action="/visualizar_turmas" style="display:inline">
                     <input type="hidden" name="disciplina_id" value="{{d.id}}" />
-                    <input type="number" name="prof_id" placeholder="Seu ID" required style="width:6em" />
                     <button type="submit">Inscrever-me</button>
                 </form>
                 % else:

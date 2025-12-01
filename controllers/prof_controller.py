@@ -4,6 +4,7 @@ from services.prof_service import ProfService
 from services.tarefa_service import TarefaService
 from services.video_service import VideoService
 from services.disciplina_service import DisciplinaService
+from .login_controller import login_controller
 
 class ProfController(BaseController):
     def __init__(self, app):
@@ -27,8 +28,8 @@ class ProfController(BaseController):
         self.app.route('/criar_atividade', method=['GET', 'POST'], callback=self.criar_atividade)
         self.app.route('/postar_videoaula', method=['GET', 'POST'], callback=self.postar_videoaula)
         self.app.route('/enviar_recado', method=['GET'], callback=self.enviar_recado)
-            self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
-            self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
+        self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
+        self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
         self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
         self.app.route('/relatorios', method='GET', callback=self.relatorios)
     def lancar_notas(self):
@@ -98,7 +99,10 @@ class ProfController(BaseController):
 
     def inscrever_docente(self):
         disciplina_id = int(request.forms.get('disciplina_id'))
-        prof_id = int(request.forms.get('prof_id'))
+        # Usa o professor logado; não requer código/ID no formulário
+        if login_controller.user_logged is None:
+            return self.redirect('/login')
+        prof_id = int(login_controller.user_logged.entidade.id)
         try:
             self.disciplina_service.atribuir_docente(disciplina_id, prof_id)
             return self.redirect('/visualizar_turmas')
