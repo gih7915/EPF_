@@ -3,6 +3,7 @@ from .base_controller import BaseController
 from services.prof_service import ProfService
 from services.tarefa_service import TarefaService
 from services.video_service import VideoService
+from services.disciplina_service import DisciplinaService
 
 class ProfController(BaseController):
     def __init__(self, app):
@@ -12,6 +13,7 @@ class ProfController(BaseController):
         self.prof_service = ProfService()
         self.tarefa_service = TarefaService()
         self.video_service = VideoService()
+        self.disciplina_service = DisciplinaService()
 
 
     # Rotas Prof
@@ -25,7 +27,8 @@ class ProfController(BaseController):
         self.app.route('/criar_atividade', method=['GET', 'POST'], callback=self.criar_atividade)
         self.app.route('/postar_videoaula', method=['GET', 'POST'], callback=self.postar_videoaula)
         self.app.route('/enviar_recado', method=['GET'], callback=self.enviar_recado)
-        self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
+            self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
+            self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
         self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
         self.app.route('/relatorios', method='GET', callback=self.relatorios)
     def lancar_notas(self):
@@ -90,7 +93,17 @@ class ProfController(BaseController):
         return self.render('recados')
 
     def visualizar_turmas(self):
-        return self.render('visualizar_turmas')
+        disciplinas = self.disciplina_service.get_all()
+        return self.render('visualizar_turmas', disciplinas=disciplinas)
+
+    def inscrever_docente(self):
+        disciplina_id = int(request.forms.get('disciplina_id'))
+        prof_id = int(request.forms.get('prof_id'))
+        try:
+            self.disciplina_service.atribuir_docente(disciplina_id, prof_id)
+            return self.redirect('/visualizar_turmas')
+        except Exception as e:
+            return f"Erro: {str(e)}"
 
     def avaliar_trabalhos(self):
         return self.render('avaliar_trabalhos')

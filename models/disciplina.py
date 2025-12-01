@@ -1,7 +1,6 @@
 import json
 import os
 from typing import Optional, List
-from controllers.prof_controller import prof_controller
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
@@ -31,7 +30,7 @@ class Disciplina:
         nome: str,
         turma: str,
         ano_periodo: str,
-        docente_id: str,
+        docente_id: Optional[int],
         carga_horaria: str,
         horario: str,
         vagas_ofertadas: int,
@@ -45,7 +44,7 @@ class Disciplina:
         self.nome = nome
         self.turma = turma
         self.ano_periodo = ano_periodo
-        self.docente = prof_controller.prof_service.get_by_id(docente_id)
+        self.docente_id = docente_id
         self.carga_horaria = carga_horaria
         self.horario = horario
         self.vagas_ofertadas = vagas_ofertadas
@@ -64,7 +63,7 @@ class Disciplina:
             'nome': self.nome,
             'turma': self.turma,
             'ano_periodo': self.ano_periodo,
-            'docente_id': self.docente.__getattribute__(id),
+            'docente_id': self.docente_id,
             'carga_horaria': self.carga_horaria,
             'horario': self.horario,
             'vagas_ofertadas': self.vagas_ofertadas,
@@ -82,7 +81,7 @@ class Disciplina:
             nome=data['nome'],
             turma=data['turma'],
             ano_periodo=data['ano_periodo'],
-            docente_id=data['docente_id'],
+            docente_id=data.get('docente_id'),
             carga_horaria=data['carga_horaria'],
             horario=data['horario'],
             vagas_ofertadas=data['vagas_ofertadas'],
@@ -118,10 +117,7 @@ class DisciplinaModel:
 
     def __init__(self):
         self.disciplinas = self._load()
-        for d in self.disciplinas:
-            for p in prof_controller.prof_service.get_all():
-                if d.docente.id == p.id:
-                    p.disciplinas.append(d)
+        # vínculo de disciplinas ao professor pode ser feito em services/controllers
 
     def _load(self):
         if not os.path.exists(self.FILE_PATH):

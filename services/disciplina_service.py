@@ -58,3 +58,14 @@ class DisciplinaService:
         """Retorna todas as disciplinas em que o aluno está matriculado."""
         todas = self.get_all()
         return [d for d in todas if aluno_id in d.alunos_matriculados]
+
+    def atribuir_docente(self, disciplina_id: int, prof_id: int):
+        """Atribui um docente à disciplina (professor se inscreve)."""
+        disciplina = self.get_by_id(disciplina_id)
+        if not disciplina:
+            raise Exception("Disciplina não encontrada")
+        if disciplina.docente_id:
+            raise Exception("Disciplina já possui docente")
+        disciplina.docente_id = prof_id
+        self.disciplina_model.update(disciplina)
+        return True
