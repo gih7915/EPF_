@@ -213,14 +213,22 @@ class AlunoController(BaseController):
 
 
     def meu_perfil(self):
+        aluno_id = request.query.get('aluno_id')
+        if not aluno_id:
+            self.redirect("/")
+            return
+        aluno = self.aluno_model.get_by_id(int(aluno_id))
         if request.method == 'GET':
-            aluno_id = request.query.get('aluno_id')
-            aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
-
-            return self.render('meu_perfil', aluno=aluno)
-        else:
-            self.redirect(f"/dashboard/aluno")
-
+            if aluno:
+                return self.render('meu_perfil', aluno=aluno, prof=None, cursos=lists.cursos)
+            else:
+                self.redirect("/")
+        else: 
+            if aluno:
+                self.aluno_service.edit_aluno_attribute(aluno)
+                self.redirect(f"/meu_perfil?aluno_id={aluno_id}")
+            else:
+                self.redirect("/")
 
 
 aluno_routes = Bottle()

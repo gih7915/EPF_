@@ -6,5 +6,13 @@
         "birthdate": "1999-12-12",
         "senha": "gAAAAABpKnvKtu_ckOaJxAMMqpCJ4AVTCakVNU7exZ03SPYAOpjdYheX7msmNpFeHWczhN1O5b9O9-kWJKTZZc9nHTQuZo03EQ==",
         "cargo": "Professor"
+    },
+    {
+        "id": 2,
+        "name": "Joana Sousa",
+        "email": "joana@gmail.com",
+        "birthdate": "2000-10-10",
+        "senha": "gAAAAABpLiMKltAqh7Gb83cBOU9bIY8sz8sOVUh4pMLjVY6Y4iLcA30lL34233SrmxdA2wvk7dURbY0LjxZb4kAW-tyHQgV3Wg==",
+        "cargo": "Diretor"
     }
 ]

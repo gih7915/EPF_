@@ -42,7 +42,7 @@ class AlunoService:
         name = request.forms.get('name')
         email = request.forms.get('email')
         birthdate = request.forms.get('birthdate')
-        senha = request.forms.get('senha')
+        senha = self.fernet.encrypt(request.forms.get('senha').encode('utf-8')).decode()
         matricula = request.forms.get('matricula')
         curso = request.forms.get('curso')
 
@@ -55,6 +55,27 @@ class AlunoService:
 
         self.aluno_model.update_aluno(aluno)
 
+
+    def edit_aluno_attribute(self, aluno):
+        form_name = request.forms.get("name")
+        form_email = request.forms.get("email")
+        form_matricula = request.forms.get("matricula")
+        form_birthdate = request.forms.get("birthdate")
+        form_curso = request.forms.get("curso")
+
+        if form_name is not None:
+            aluno.name = form_name
+        if form_email is not None:
+            aluno.email = form_email
+        if form_matricula is not None:
+            aluno.matricula = form_matricula
+        if form_birthdate is not None:
+            aluno.birthdate = form_birthdate
+        if form_curso is not None:
+            aluno.curso = form_curso
+
+        self.aluno_model.update_aluno(aluno)
+        
 
     def delete_aluno(self, aluno_id):
         self.aluno_model.delete_aluno(aluno_id)
