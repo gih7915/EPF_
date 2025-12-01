@@ -24,6 +24,10 @@ class ProfController(BaseController):
         self.app.route('/lancar_faltas', method=['GET', 'POST'], callback=self.lancar_faltas)
         self.app.route('/criar_atividade', method=['GET', 'POST'], callback=self.criar_atividade)
         self.app.route('/postar_videoaula', method=['GET', 'POST'], callback=self.postar_videoaula)
+        self.app.route('/enviar_recado', method=['GET'], callback=self.enviar_recado)
+        self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
+        self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
+        self.app.route('/relatorios', method='GET', callback=self.relatorios)
     def lancar_notas(self):
         if request.method == 'GET':
             return self.render('lancar_notas')
@@ -81,6 +85,18 @@ class ProfController(BaseController):
             self.video_service.add_video(video)
 
             self.redirect('/videoaulas')
+
+    def enviar_recado(self):
+        return self.render('recados')
+
+    def visualizar_turmas(self):
+        return self.render('visualizar_turmas')
+
+    def avaliar_trabalhos(self):
+        return self.render('avaliar_trabalhos')
+
+    def relatorios(self):
+        return self.render('relatorios')
 
 
     def list_profs(self):
