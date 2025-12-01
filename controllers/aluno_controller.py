@@ -30,6 +30,7 @@ class AlunoController(BaseController):
         self.app.route('/tarefas', method=['GET'], callback=self.list_tarefas)
         self.app.route('/tarefas/submit/<tarefa_id>', method=['GET', 'POST'], callback=self.submit_tarefa)
 
+        self.app.route('/meu_perfil', method=['GET', 'POST'], callback=self.meu_perfil)
         self.app.route('/minhas_notas', method=['GET', 'POST'], callback=self.mostra_notas)
         self.app.route('/minhas_faltas', method=['GET', 'POST'], callback=self.mostra_faltas)
 
@@ -207,6 +208,16 @@ class AlunoController(BaseController):
                                faltas_entries=faltas_entries,
                                total_faltas=total_faltas,
                                nav_dict=lists.home_logged_nav_bar)
+        else:
+            self.redirect(f"/dashboard/aluno")
+
+
+    def meu_perfil(self):
+        if request.method == 'GET':
+            aluno_id = request.query.get('aluno_id')
+            aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
+
+            return self.render('meu_perfil', aluno=aluno)
         else:
             self.redirect(f"/dashboard/aluno")
 

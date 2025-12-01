@@ -50,5 +50,6 @@
 
     <!-- Scripts JS no final do body -->
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/script.js"></script>
 </body>
 </html>
