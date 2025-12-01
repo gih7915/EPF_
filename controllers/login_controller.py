@@ -38,7 +38,13 @@ class LoginController(BaseController):
         
         else:  # POST
             try:
-                self.user_logged = Login(self.login_service.check())
+                # Inject services to avoid circular imports
+                from .prof_controller import prof_controller
+                from .aluno_controller import aluno_controller
+                self.user_logged = Login(self.login_service.check(
+                    prof_controller.prof_service,
+                    aluno_controller.aluno_service
+                ))
                 
                 # Redirecionar para dashboard específico baseado no tipo de usuário
                 user_type = self.user_logged.entidade.__class__.__name__

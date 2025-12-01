@@ -2,8 +2,6 @@ import json
 import os
 from dataclasses import dataclass, asdict
 from typing import List
-from controllers.prof_controller import prof_controller
-from controllers.aluno_controller import aluno_controller
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
@@ -23,5 +21,5 @@ class Login():
 
 class LoginModel():
     def __init__(self):
-        self.prof_service = prof_controller.prof_service
-        self.aluno_service = aluno_controller.aluno_service
+        # Avoid circular imports; services are injected where needed
+        pass

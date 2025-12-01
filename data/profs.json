@@ -9,10 +9,26 @@
     },
     {
         "id": 2,
+<<<<<<< HEAD
         "name": "Joana Sousa",
         "email": "joana@gmail.com",
         "birthdate": "2000-10-10",
         "senha": "gAAAAABpLiMKltAqh7Gb83cBOU9bIY8sz8sOVUh4pMLjVY6Y4iLcA30lL34233SrmxdA2wvk7dURbY0LjxZb4kAW-tyHQgV3Wg==",
         "cargo": "Diretor"
+=======
+        "name": "Alexandre",
+        "email": "alex@gmail.com",
+        "birthdate": "1984-05-02",
+        "senha": "gAAAAABpLfADwwH7hgjXSh_11QHA6ov90PceUD2y-wYvxmTMTOvFr0QQKQlxSR5nVHuXxdtgPJUw_AjnK90j2dZ5z7-Y8mDXsg==",
+        "cargo": "Professor"
+    },
+    {
+        "id": 3,
+        "name": "JoÃ£o Victor Silva Fernandes",
+        "email": "joao@gmail.com",
+        "birthdate": "2004-02-08",
+        "senha": "gAAAAABpLfS1vnZanoxGPy0ki3O5lxGD5v17KK2aQf6ymkMWoHWWaMKqhE7lY4rrnZ0_zR99DAz-x87SxxGVT88Lq0AZ_rqgpQ==",
+        "cargo": "Professor"
+>>>>>>> 012f626ef7b4d36c01604468180e6cf8a23f2a1d
     }
 ]
