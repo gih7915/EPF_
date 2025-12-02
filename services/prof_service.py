@@ -52,6 +52,23 @@ class ProfService:
 
         self.prof_model.update_prof(prof)
 
+    def edit_prof_attribute(self, prof):
+        form_name = request.forms.get("name")
+        form_email = request.forms.get("email")
+        form_birthdate = request.forms.get("birthdate")
+        form_cargo = request.forms.get("cargo")
+
+        if form_name is not None:
+            prof.name = form_name
+        if form_email is not None:
+            prof.email = form_email
+        if form_birthdate is not None:
+            prof.birthdate = form_birthdate
+        if form_cargo is not None:
+            prof.cargo = form_cargo
+
+        self.prof_model.update_prof(prof)
+
 
     def delete_prof(self, prof_id):
         self.prof_model.delete_prof(prof_id)

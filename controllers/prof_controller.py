@@ -1,6 +1,7 @@
 from bottle import Bottle, request
 from .base_controller import BaseController
 from services.prof_service import ProfService
+from models.prof import ProfModel
 from services.tarefa_service import TarefaService
 from services.video_service import VideoService
 from services.disciplina_service import DisciplinaService
@@ -11,6 +12,7 @@ class ProfController(BaseController):
 
         self.setup_routes()
         self.prof_service = ProfService()
+        self.prof_model = ProfModel()
         self.tarefa_service = TarefaService()
         self.video_service = VideoService()
         self.disciplina_service = DisciplinaService()
@@ -29,15 +31,21 @@ class ProfController(BaseController):
         self.app.route('/profs/add', method=['GET', 'POST'], callback=self.add_prof)
         self.app.route('/profs/edit/<prof_id:int>', method=['GET', 'POST'], callback=self.edit_prof)
         self.app.route('/profs/delete/<prof_id:int>', method='POST', callback=self.delete_prof)
+
         self.app.route('/lancar_notas', method=['GET', 'POST'], callback=self.lancar_notas)
         self.app.route('/lancar_faltas', method=['GET', 'POST'], callback=self.lancar_faltas)
         self.app.route('/criar_atividade', method=['GET', 'POST'], callback=self.criar_atividade)
         self.app.route('/postar_videoaula', method=['GET', 'POST'], callback=self.postar_videoaula)
         self.app.route('/enviar_recado', method=['GET'], callback=self.enviar_recado)
+
         self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
         self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
+
         self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
         self.app.route('/relatorios', method='GET', callback=self.relatorios)
+
+        self.app.route('/perfil_professor', method=['GET', 'POST'], callback=self.perfil_professor)
+
     def lancar_notas(self):
         prof = self._get_logged_prof()
         if not prof:
@@ -47,11 +55,6 @@ class ProfController(BaseController):
             minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
             return self.render('lancar_notas', minhas_turmas=minhas_turmas, prof=prof)
         else:
-            # Aqui você pode adicionar a lógica para salvar a nota
-            # Exemplo: disciplina_id = request.forms.get('disciplina_id')
-            # aluno = request.forms.get('aluno')
-            # nota = request.forms.get('nota')
-            # self.prof_service.lancar_nota(disciplina_id, aluno, nota)
             self.redirect('/dashboard_prof')
 
     def lancar_faltas(self):
@@ -63,11 +66,6 @@ class ProfController(BaseController):
             minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
             return self.render('lancar_faltas', minhas_turmas=minhas_turmas, prof=prof)
         else:
-            # Aqui você pode adicionar a lógica para salvar as faltas
-            # Exemplo: disciplina_id = request.forms.get('disciplina_id')
-            # aluno = request.forms.get('aluno')
-            # faltas = request.forms.get('faltas')
-            # self.prof_service.lancar_falta(disciplina_id, aluno, faltas)
             self.redirect('/dashboard_prof')
 
     def criar_atividade(self):
@@ -172,6 +170,24 @@ class ProfController(BaseController):
     def delete_prof(self, prof_id):
         self.prof_service.delete_prof(prof_id)
         self.redirect('/profs')
+
+    def perfil_professor(self): #aq é similar ao meu_perfil do aluno controller
+        prof_id = request.query.get('prof_id')
+        if not prof_id:
+            self.redirect("/")
+            return
+        prof = self.prof_model.get_by_id(int(prof_id))
+        if request.method == 'GET':
+            if prof:
+                return self.render('perfil_professor', prof=prof)
+            else:
+                self.redirect("/")
+        else: 
+            if prof:
+                self.prof_service.edit_prof_attribute(prof)
+                self.redirect(f"/perfil_professor?prof_id={prof_id}")
+            else:
+                self.redirect("/")
 
 
 prof_routes = Bottle()

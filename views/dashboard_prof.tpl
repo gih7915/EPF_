@@ -24,6 +24,12 @@
         <p class="dashboard-description">Crie tarefas, trabalhos e exercícios para suas turmas.</p>
     </a>
 
+    <a href="/perfil_professor?prof_id={{prof.id}}" class="dashboard-card" style="text-decoration: none; color: inherit;">
+        <div class="dashboard-icon">👤</div>
+        <h2 class="dashboard-title">Meu Perfil</h2>
+        <p class="dashboard-description">Gerencie suas informações pessoais.</p>
+    </a>
+
     <a href="/postar_videoaula" class="dashboard-card" style="text-decoration: none; color: inherit;">
         <div class="dashboard-icon">🎥</div>
         <h2 class="dashboard-title">Postar Videoaulas</h2>

@@ -5,7 +5,7 @@
   <label for="titulo">Título:</label>
   <input type="text" id="titulo" name="titulo" required><br>
 
-  <label for="link">Link (YouTube/Vimeo):</label>
+  <label for="link">Link:</label>
   <input type="url" id="link" name="link" required><br>
 
   <label for="disciplina">Disciplina:</label>

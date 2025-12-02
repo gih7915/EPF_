@@ -136,21 +136,17 @@ class AlunoController(BaseController):
             if disciplina_codigo and aluno:
                 disciplina_selecionada = next((d for d in disciplinas_matriculadas if d.codigo == disciplina_codigo), None)
 
-                # buscar tarefas da disciplina
                 tarefas = [t for t in self.tarefa_service.get_all() if t.disciplina == disciplina_codigo]
 
-                # buscar submissões do aluno
                 submissao_all = self.submissao_service.get_all()
                 for t in tarefas:
                     sub = next((s for s in submissao_all if s.tarefa_id == t.id and s.aluno_id == int(aluno_id)), None)
                     notas_entries.append({'tarefa': t, 'submissao': sub})
 
-                # calcular média a partir das submissões com nota
                 notas_vals = [s.nota for e in notas_entries for s in ([e['submissao']] if e['submissao'] else []) if s.nota is not None]
                 if notas_vals:
                     media = sum(notas_vals) / len(notas_vals)
                 else:
-                    # fallback para média armazenada no objeto aluno (se existir)
                     media = aluno.calcular_media(disciplina_codigo)
 
             return self.render('minhas_notas',
