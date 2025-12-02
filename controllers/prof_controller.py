@@ -42,7 +42,6 @@ class ProfController(BaseController):
         self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
 
         self.app.route('/avaliar_trabalhos', method=['GET'], callback=self.avaliar_trabalhos)
-        self.app.route('/relatorios', method='GET', callback=self.relatorios)
 
         self.app.route('/perfil_professor', method=['GET', 'POST'], callback=self.perfil_professor)
 
@@ -135,9 +134,6 @@ class ProfController(BaseController):
 
     def avaliar_trabalhos(self):
         return self.render('avaliar_trabalhos')
-
-    def relatorios(self):
-        return self.render('relatorios')
 
 
     def list_profs(self):
