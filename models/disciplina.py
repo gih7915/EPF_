@@ -131,9 +131,13 @@ class DisciplinaModel:
             json.dump([d.to_dict() for d in self.disciplinas], f, ensure_ascii=False, indent=2)
 
     def get_all(self):
+        # Recarrega dados do arquivo para garantir que está atualizado
+        self.disciplinas = self._load()
         return self.disciplinas
 
     def get_by_id(self, disciplina_id: int):
+        # Recarrega dados do arquivo para garantir que está atualizado
+        self.disciplinas = self._load()
         for disciplina in self.disciplinas:
             if disciplina.id == disciplina_id:
                 return disciplina
