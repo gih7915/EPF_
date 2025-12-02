@@ -60,11 +60,7 @@
         <p class="dashboard-description">Gere relatórios de desempenho, frequência e estatísticas das turmas.</p>
     </a>
 
-    <a href="/calendario" class="dashboard-card" style="text-decoration: none; color: inherit;">
-        <div class="dashboard-icon">📅</div>
-        <h2 class="dashboard-title">Calendário</h2>
-        <p class="dashboard-description">Visualize e gerencie o calendário acadêmico e eventos importantes.</p>
-    </a>
+    
 </div>
 
 <div class="card">
