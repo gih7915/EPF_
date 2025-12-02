@@ -54,11 +54,7 @@
         <p class="dashboard-description">Corrija e avalie os trabalhos submetidos pelos alunos.</p>
     </a>
 
-    <a href="/relatorios" class="dashboard-card" style="text-decoration: none; color: inherit;">
-        <div class="dashboard-icon">📊</div>
-        <h2 class="dashboard-title">Relatórios</h2>
-        <p class="dashboard-description">Gere relatórios de desempenho, frequência e estatísticas das turmas.</p>
-    </a>
+    
 
     
 </div>
