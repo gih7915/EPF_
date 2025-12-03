@@ -302,7 +302,7 @@ class ProfController(BaseController):
         if not prof_id:
             self.redirect("/")
             return
-        prof = self.prof_model.get_by_id(int(prof_id))
+        prof = prof_controller.prof_model.get_by_id(int(prof_id))
         if request.method == 'GET':
             if prof:
                 return self.render('perfil_professor', prof=prof)

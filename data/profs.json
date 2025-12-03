@@ -38,5 +38,13 @@
         "birthdate": "2000-10-10",
         "senha": "gAAAAABpLkAAdzoyehga50i3Z3sUas5YdCMqjxjv08kpjIA9ueyi0fP4K2HV0-SycHe8sTykz-blm2ljp0qfdOd0mTty2TBGOA==",
         "cargo": "Coordenador"
+    },
+    {
+        "id": 6,
+        "name": "Alberto da Silva",
+        "email": "alberto@gmail.com",
+        "birthdate": "2000-10-10",
+        "senha": "gAAAAABpL9Cs0v_hHALJBndiryN-a1P_bCiyT_cpUQ9SDU48oN9s7CewEOThne5-50eoSrpglOEpNQj7kn79Hj_sr-i_4j2i7w==",
+        "cargo": "Professor"
     }
 ]

@@ -237,7 +237,7 @@ class AlunoController(BaseController):
         if not aluno_id:
             self.redirect("/")
             return
-        aluno = self.aluno_model.get_by_id(int(aluno_id))
+        aluno = aluno_controller.aluno_model.get_by_id(int(aluno_id))
         if request.method == 'GET':
             if aluno:
                 return self.render('meu_perfil', aluno=aluno, prof=None, cursos=lists.cursos)
