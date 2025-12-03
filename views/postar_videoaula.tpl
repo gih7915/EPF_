@@ -31,7 +31,7 @@
 
         <div class="form-actions">
             <button type="submit" class="btn-submit">📤 Publicar Videoaula</button>
-            <button type="button" onclick="window.location.href='/dashboard_prof'" class="btn-cancel">Cancelar</button>
+            <button type="button" onclick="window.location.href='/dashboard/professor'" class="btn-cancel">Cancelar</button>
         </div>
     </form>
 </div>

@@ -40,11 +40,16 @@ class AlunoController(BaseController):
         disciplina_codigo = request.query.get('disciplina_codigo')
         
         if not aluno_id:
-            return "Aluno não informado"
+            return "Aluno não informado. Por favor, faça login novamente."
         
-        aluno = self.aluno_model.get_by_id(int(aluno_id))
+        try:
+            aluno_id_int = int(aluno_id)
+        except (ValueError, TypeError):
+            return f"ID de aluno inválido: {aluno_id}"
+        
+        aluno = self.aluno_model.get_by_id(aluno_id_int)
         if not aluno:
-            return "Aluno não encontrado"
+            return f"Aluno não encontrado (ID: {aluno_id_int})"
         
         # Pegar disciplinas matriculadas
         disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
@@ -74,7 +79,12 @@ class AlunoController(BaseController):
         if not aluno_id:
             return "Aluno não informado"
         
-        aluno = self.aluno_model.get_by_id(int(aluno_id))
+        try:
+            aluno_id_int = int(aluno_id)
+        except (ValueError, TypeError):
+            return f"ID de aluno inválido: {aluno_id}"
+        
+        aluno = self.aluno_model.get_by_id(aluno_id_int)
         if not aluno:
             return "Aluno não encontrado"
         
@@ -93,11 +103,20 @@ class AlunoController(BaseController):
 
     def list_tarefas(self):
         aluno_id = request.query.get('aluno_id')
-        aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
+        
+        if not aluno_id:
+            return "Aluno não informado. Por favor, faça login novamente."
+        
+        try:
+            aluno_id_int = int(aluno_id)
+        except (ValueError, TypeError):
+            return f"ID de aluno inválido: {aluno_id}"
+        
+        aluno = self.aluno_model.get_by_id(aluno_id_int)
         
         # Filtrar tarefas apenas das disciplinas matriculadas
         if aluno:
-            disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
+            disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(aluno_id_int)
             codigos_matriculados = [d.codigo for d in disciplinas_matriculadas]
             todas_tarefas = self.tarefa_service.get_all()
             tarefas = [t for t in todas_tarefas if t.disciplina in codigos_matriculados]
@@ -134,8 +153,12 @@ class AlunoController(BaseController):
             conteudo = request.forms.get('conteudo')
             entregue_em = request.forms.get('entregue_em')
 
-            # gerar id simples
-            last_id = max([s.id for s in self.submissao_service.get_all()], default=0)
+            # gerar id simples (inteiro)
+            all_submissoes = self.submissao_service.get_all()
+            if all_submissoes:
+                last_id = max([int(s.id) if isinstance(s.id, str) else s.id for s in all_submissoes], default=0)
+            else:
+                last_id = 0
             new_id = last_id + 1
             submissao = Submissao(id=new_id, tarefa_id=tarefa_id, aluno_id=int(aluno_id), conteudo=conteudo, entregue_em=entregue_em)
             self.submissao_service.add_submissao(submissao)

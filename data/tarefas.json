@@ -14,5 +14,21 @@
         "disciplina": "Introdução",
         "prazo": "2025-12-05",
         "max_points": 5
+    },
+    {
+        "id": "t3",
+        "titulo": "Lista 1",
+        "descricao": "Linux",
+        "disciplina": "FGA0170",
+        "prazo": "2025-12-04",
+        "max_points": null
+    },
+    {
+        "id": "t4",
+        "titulo": "Lista 1",
+        "descricao": "Linux",
+        "disciplina": "FGA0170",
+        "prazo": "2043-09-04",
+        "max_points": null
     }
 ]

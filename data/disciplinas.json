@@ -9,12 +9,13 @@
     "carga_horaria": "60h",
     "horario": "35T23 (18/08/2025 - 15/12/2025)",
     "vagas_ofertadas": 125,
-    "vagas_ocupadas": 117,
+    "vagas_ocupadas": 118,
     "local": "FCTE - S1",
     "senha": "ED2-01-2025",
     "alunos_matriculados": [
       3,
-      2
+      2,
+      5
     ]
   },
   {
@@ -27,11 +28,12 @@
     "carga_horaria": "60h",
     "horario": "24T23 (18/08/2025 - 15/12/2025)",
     "vagas_ofertadas": 80,
-    "vagas_ocupadas": 79,
+    "vagas_ocupadas": 80,
     "local": "FCTE - S2 / S4",
     "senha": "COMP1-01-2025",
     "alunos_matriculados": [
-      3
+      3,
+      5
     ]
   },
   {

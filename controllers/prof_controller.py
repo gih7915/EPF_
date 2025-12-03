@@ -76,9 +76,43 @@ class ProfController(BaseController):
         else:
             # POST - salvar nota
             disciplina_codigo = request.forms.get('disciplina_codigo')
-            aluno_id = int(request.forms.get('aluno_id'))
+            aluno_id_str = request.forms.get('aluno_id')
             avaliacao = request.forms.get('avaliacao')
-            nota = float(request.forms.get('nota'))
+            nota_str = request.forms.get('nota')
+            
+            # Validar campos obrigatórios
+            if not aluno_id_str or not disciplina_codigo or not nota_str:
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None) if disciplina_codigo else None
+                from models.aluno import AlunoModel
+                aluno_model = AlunoModel()
+                todos_alunos = aluno_model.get_all()
+                alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados] if disciplina_selecionada else []
+                
+                return self.render('lancar_notas', 
+                                 minhas_turmas=minhas_turmas, 
+                                 prof=prof,
+                                 disciplina_selecionada=disciplina_selecionada,
+                                 alunos=alunos,
+                                 mensagem="Por favor, preencha todos os campos obrigatórios.",
+                                 nav_dict=lists.home_logged_nav_bar)
+            
+            try:
+                aluno_id = int(aluno_id_str)
+                nota = float(nota_str)
+            except (ValueError, TypeError):
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
+                from models.aluno import AlunoModel
+                aluno_model = AlunoModel()
+                todos_alunos = aluno_model.get_all()
+                alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados] if disciplina_selecionada else []
+                
+                return self.render('lancar_notas', 
+                                 minhas_turmas=minhas_turmas, 
+                                 prof=prof,
+                                 disciplina_selecionada=disciplina_selecionada,
+                                 alunos=alunos,
+                                 mensagem="Valores inválidos. Verifique os dados e tente novamente.",
+                                 nav_dict=lists.home_logged_nav_bar)
             
             from models.aluno import AlunoModel
             aluno_model = AlunoModel()
@@ -133,8 +167,26 @@ class ProfController(BaseController):
         else:
             # POST - salvar falta
             disciplina_codigo = request.forms.get('disciplina_codigo')
-            aluno_id = int(request.forms.get('aluno_id'))
+            aluno_id_str = request.forms.get('aluno_id')
             data = request.forms.get('data')
+            
+            # Validar campos obrigatórios
+            if not aluno_id_str or not disciplina_codigo or not data:
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None) if disciplina_codigo else None
+                from models.aluno import AlunoModel
+                aluno_model = AlunoModel()
+                todos_alunos = aluno_model.get_all()
+                alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados] if disciplina_selecionada else []
+                
+                return self.render('lancar_faltas', 
+                                 minhas_turmas=minhas_turmas, 
+                                 prof=prof,
+                                 disciplina_selecionada=disciplina_selecionada,
+                                 alunos=alunos,
+                                 mensagem="Por favor, preencha todos os campos obrigatórios.",
+                                 nav_dict=lists.home_logged_nav_bar)
+            
+            aluno_id = int(aluno_id_str)
             
             # salva a falta no aluno
             from models.aluno import AlunoModel
@@ -174,14 +226,33 @@ class ProfController(BaseController):
             disciplina_codigo = request.forms.get('disciplina_codigo')
             prazo = request.forms.get('prazo')
 
-            last_id = max([t.id for t in self.tarefa_service.get_all()], default=0)
-            new_id = last_id + 1
+            # Gerar novo ID no formato correto (string como "t1", "t2", etc.)
+            all_tarefas = self.tarefa_service.get_all()
+            if all_tarefas:
+                # Extrair números dos IDs existentes
+                ids_numericos = []
+                for t in all_tarefas:
+                    if isinstance(t.id, str) and t.id.startswith('t'):
+                        try:
+                            ids_numericos.append(int(t.id[1:]))
+                        except ValueError:
+                            pass
+                    elif isinstance(t.id, int):
+                        ids_numericos.append(t.id)
+                
+                if ids_numericos:
+                    last_num = max(ids_numericos)
+                else:
+                    last_num = 0
+                new_id = f"t{last_num + 1}"
+            else:
+                new_id = "t1"
 
             from models.tarefa import Tarefa
             tarefa = Tarefa(id=new_id, titulo=titulo, descricao=descricao, disciplina=disciplina_codigo, prazo=prazo)
             self.tarefa_service.add_tarefa(tarefa)
 
-            self.redirect('/dashboard_prof')
+            self.redirect('/dashboard/professor')
 
     def postar_videoaula(self):
         prof = self._get_logged_prof()
@@ -198,15 +269,37 @@ class ProfController(BaseController):
             disciplina_codigo = request.forms.get('disciplina_codigo')
             descricao = request.forms.get('descricao')
 
-            last_id = max([v.id for v in self.video_service.get_all()], default=0)
-            new_id = last_id + 1
+            # Gerar novo ID no formato correto (string como "v1", "v2", etc.)
+            all_videos = self.video_service.get_all()
+            if all_videos:
+                # Extrair números dos IDs existentes
+                ids_numericos = []
+                for v in all_videos:
+                    if isinstance(v.id, str):
+                        # Tentar extrair número de IDs como "v1", "v2", "ex_v1", etc.
+                        parts = v.id.split('v')
+                        if len(parts) > 1:
+                            try:
+                                ids_numericos.append(int(parts[-1]))
+                            except ValueError:
+                                pass
+                    elif isinstance(v.id, int):
+                        ids_numericos.append(v.id)
+                
+                if ids_numericos:
+                    last_num = max(ids_numericos)
+                else:
+                    last_num = 0
+                new_id = f"v{last_num + 1}"
+            else:
+                new_id = "v1"
 
             from models.videoaula import VideoAula
             video = VideoAula(id=new_id, titulo=titulo, url=url, descricao=descricao, 
                             disciplina=disciplina_codigo, disciplina_codigo=disciplina_codigo)
             self.video_service.add_video(video)
 
-            self.redirect('/dashboard_prof')
+            self.redirect('/dashboard/professor')
 
     def enviar_recado(self):
         prof = self._get_logged_prof()
@@ -227,8 +320,12 @@ class ProfController(BaseController):
             aluno_id = request.forms.get('aluno_id')
             aluno_id_int = int(aluno_id) if aluno_id else None
 
-            # gerar id simples
-            last_id = max([r.id for r in recado_service.get_all()], default=0)
+            # gerar id simples (inteiro)
+            all_recados = recado_service.get_all()
+            if all_recados:
+                last_id = max([int(r.id) if isinstance(r.id, str) else r.id for r in all_recados], default=0)
+            else:
+                last_id = 0
             new_id = last_id + 1
             from models.recado import Recado
             recado = Recado(id=new_id, titulo=titulo, mensagem=mensagem, disciplina_codigo=disciplina_codigo,

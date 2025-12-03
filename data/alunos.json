@@ -58,5 +58,35 @@
         "ativo": true,
         "videos_assistidos": [],
         "entregas": {}
+    },
+    {
+        "id": 5,
+        "name": "Giovana",
+        "email": "giovana@gmail.com",
+        "birthdate": "2005-04-07",
+        "senha": "gAAAAABpMCGG4i2UyKTszsTWgFEwWSU9MvWYotcBSJmU5P7OjO4_FdZ1ZUm--4em7f22oqyY5MouhR14YIiqjVPPoCMaArVI-g==",
+        "matricula": "231034707",
+        "curso": "Engenharia de Software",
+        "notas": {},
+        "faltas": {},
+        "turma": null,
+        "ativo": true,
+        "videos_assistidos": [],
+        "entregas": {}
+    },
+    {
+        "id": 6,
+        "name": "Pedro",
+        "email": "Pedro@gmail.com",
+        "birthdate": "2003-06-07",
+        "senha": "gAAAAABpMCPYdXwfCFXgKcFH_G5hZdRJ81jikx6Onim6k0srWzXWIZe4Z2J72r8eO9SUSsGbw0RVZB4tMyaiC5CFfpFN5ld3qg==",
+        "matricula": "221034707",
+        "curso": "Engenharia Automotiva",
+        "notas": {},
+        "faltas": {},
+        "turma": null,
+        "ativo": true,
+        "videos_assistidos": [],
+        "entregas": {}
     }
 ]
