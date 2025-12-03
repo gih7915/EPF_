@@ -24,13 +24,7 @@
         <input type="hidden" name="aluno_id" value="{{aluno_id}}">
         
         <div class="form-group">
-            <label for="senha">🔑 Código de Matrícula:</label>
-            <input type="password" id="senha" name="senha" 
-                   placeholder="Digite o código fornecido pelo professor" 
-                   required>
-            <small style="color: var(--text-light); display: block; margin-top: 5px;">
-                ℹ️ Solicite o código de matrícula ao professor responsável
-            </small>
+            <p>Confirme sua matrícula nesta disciplina. Não é necessário código.</p>
         </div>
         
         <div class="form-actions">
