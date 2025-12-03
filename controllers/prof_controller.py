@@ -36,7 +36,7 @@ class ProfController(BaseController):
         self.app.route('/lancar_faltas', method=['GET', 'POST'], callback=self.lancar_faltas)
         self.app.route('/criar_atividade', method=['GET', 'POST'], callback=self.criar_atividade)
         self.app.route('/postar_videoaula', method=['GET', 'POST'], callback=self.postar_videoaula)
-        self.app.route('/enviar_recado', method=['GET'], callback=self.enviar_recado)
+        self.app.route('/enviar_recado', method=['GET', 'POST'], callback=self.enviar_recado)
 
         self.app.route('/visualizar_turmas', method=['GET'], callback=self.visualizar_turmas)
         self.app.route('/visualizar_turmas', method='POST', callback=self.inscrever_docente)
@@ -221,7 +221,7 @@ class ProfController(BaseController):
         minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
 
         if request.method == 'GET':
-            return self.render('recados', modo='professor', minhas_turmas=minhas_turmas, nav_dict=lists.home_logged_nav_bar)
+            return self.render('recados', modo='professor', minhas_turmas=minhas_turmas, mensagem_sucesso=None, nav_dict=lists.home_logged_nav_bar)
         else:
             titulo = request.forms.get('titulo')
             mensagem = request.forms.get('mensagem')

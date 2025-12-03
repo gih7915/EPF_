@@ -3,7 +3,7 @@
 % if modo == 'professor':
 <div class="form-section" style="max-width: 700px;">
     <h1>💬 Enviar Recado</h1>
-    % if mensagem_sucesso:
+    % if 'mensagem_sucesso' in locals() and mensagem_sucesso:
         <div class="card" style="background-color: var(--success-light); border-color: var(--success-color);">
             <p style="color: var(--success-color);">✅ {{mensagem_sucesso}}</p>
         </div>
