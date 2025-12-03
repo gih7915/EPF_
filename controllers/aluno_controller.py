@@ -33,6 +33,7 @@ class AlunoController(BaseController):
         self.app.route('/meu_perfil', method=['GET', 'POST'], callback=self.meu_perfil)
         self.app.route('/minhas_notas', method=['GET', 'POST'], callback=self.mostra_notas)
         self.app.route('/minhas_faltas', method=['GET', 'POST'], callback=self.mostra_faltas)
+        self.app.route('/recados', method=['GET'], callback=self.lista_recados)
 
     def list_videos(self):
         aluno_id = request.query.get('aluno_id')
@@ -105,6 +106,23 @@ class AlunoController(BaseController):
         
         import lists
         return self.render('tarefas', tarefas=tarefas, aluno=aluno, nav_dict=lists.home_logged_nav_bar)
+
+    def lista_recados(self):
+        aluno_id = request.query.get('aluno_id')
+        if not aluno_id:
+            return "Aluno não informado"
+        aluno = self.aluno_model.get_by_id(int(aluno_id))
+        if not aluno:
+            return "Aluno não encontrado"
+
+        disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
+        codigos = [d.codigo for d in disciplinas_matriculadas]
+
+        from services.recado_service import RecadoService
+        recado_service = RecadoService()
+        recados = recado_service.get_for_aluno(int(aluno_id), codigos)
+
+        return self.render('recados', modo='aluno', recados=recados, aluno=aluno, disciplinas_matriculadas=disciplinas_matriculadas, nav_dict=lists.home_logged_nav_bar)
 
     def submit_tarefa(self, tarefa_id):
         if request.method == 'GET':

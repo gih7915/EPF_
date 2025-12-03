@@ -32,7 +32,7 @@
                 <span class="badge badge-success" style="font-size: 14px;">✓ Matriculado</span>
             </div>
             <div class="card-body">
-                <p><strong>👨‍🏫 Professor:</strong> {{disc.docente}}</p>
+                <p><strong>👨‍🏫 Professor:</strong> {{disc.docente_id if disc.docente_id else 'A definir'}}</p>
                 <p><strong>⏰ Horário:</strong> {{disc.horario}}</p>
                 <p><strong>📍 Local:</strong> {{disc.local}}</p>
                 <p><strong>🕐 Carga Horária:</strong> {{disc.carga_horaria}}</p>

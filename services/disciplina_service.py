@@ -17,27 +17,26 @@ class DisciplinaService:
         """Busca disciplinas por código ou nome."""
         return self.disciplina_model.search(query)
 
-    def matricular_aluno(self, disciplina_id: int, aluno_id: int, senha: str):
+    def matricular_aluno(self, disciplina_id: int, aluno_id: int, senha: str | None = None):
         """Matricula um aluno em uma disciplina.
         
         Args:
             disciplina_id: ID da disciplina
             aluno_id: ID do aluno
-            senha: Senha da disciplina para validação
+            senha: Senha da disciplina (opcional; atualmente não exigida)
             
         Returns:
             bool: True se matrícula foi realizada com sucesso
             
         Raises:
-            Exception: Se senha incorreta, sem vagas ou aluno já matriculado
+            Exception: Se sem vagas ou aluno já matriculado
         """
         disciplina = self.disciplina_model.get_by_id(disciplina_id)
         
         if not disciplina:
             raise Exception("Disciplina não encontrada")
-        
-        if disciplina.senha != senha:
-            raise Exception("Senha incorreta")
+        # A matrícula não exige mais código/senha. Mantemos compatibilidade caso seja passado.
+        # Se desejar revalidar futuramente, reintroduzir a checagem aqui.
         
         disciplina.matricular_aluno(aluno_id)
         self.disciplina_model.update(disciplina)

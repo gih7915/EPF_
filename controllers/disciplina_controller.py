@@ -10,6 +10,16 @@ class DisciplinaController(BaseController):
         self.disciplina_service = DisciplinaService()
         self.setup_routes()
 
+    def _get_logged_aluno(self):
+        """Obtém o aluno logado via login_controller, se existir."""
+        try:
+            from .login_controller import login_controller
+            if login_controller.user_logged and login_controller.user_logged.entidade.__class__.__name__ == "Aluno":
+                return login_controller.user_logged.entidade
+        except Exception:
+            pass
+        return None
+
     def setup_routes(self):
         self.app.route('/disciplinas', method='GET', callback=self.list_disciplinas)
         self.app.route('/disciplinas/buscar', method=['GET', 'POST'], callback=self.buscar_disciplinas)
@@ -68,6 +78,9 @@ class DisciplinaController(BaseController):
         """Matricula um aluno em uma disciplina."""
         if request.method == 'GET':
             aluno_id = request.query.get('aluno_id')
+            if not aluno_id:
+                aluno = self._get_logged_aluno()
+                aluno_id = str(aluno.id) if aluno else None
             disciplina = self.disciplina_service.get_by_id(disciplina_id)
             
             if not disciplina:
@@ -81,10 +94,15 @@ class DisciplinaController(BaseController):
         else:
             # POST - realizar matrícula
             aluno_id = request.forms.get('aluno_id')
-            senha = request.forms.get('senha')
+            if not aluno_id:
+                aluno = self._get_logged_aluno()
+                aluno_id = str(aluno.id) if aluno else None
+            if not aluno_id:
+                return "Aluno não informado"
             
             try:
-                self.disciplina_service.matricular_aluno(disciplina_id, int(aluno_id), senha)
+                # Senha/código não é mais necessário
+                self.disciplina_service.matricular_aluno(disciplina_id, int(aluno_id), None)
                 self.redirect(f'/disciplinas/minhas?aluno_id={aluno_id}')
             except Exception as e:
                 disciplina = self.disciplina_service.get_by_id(disciplina_id)

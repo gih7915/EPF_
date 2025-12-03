@@ -212,7 +212,32 @@ class ProfController(BaseController):
             self.redirect('/dashboard_prof')
 
     def enviar_recado(self):
-        return self.render('recados')
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        import lists
+        from services.recado_service import RecadoService
+        recado_service = RecadoService()
+        minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+
+        if request.method == 'GET':
+            return self.render('recados', modo='professor', minhas_turmas=minhas_turmas, nav_dict=lists.home_logged_nav_bar)
+        else:
+            titulo = request.forms.get('titulo')
+            mensagem = request.forms.get('mensagem')
+            disciplina_codigo = request.forms.get('disciplina_codigo')
+            # opcional direcionado para aluno específico
+            aluno_id = request.forms.get('aluno_id')
+            aluno_id_int = int(aluno_id) if aluno_id else None
+
+            # gerar id simples
+            last_id = max([r.id for r in recado_service.get_all()], default=0)
+            new_id = last_id + 1
+            from models.recado import Recado
+            recado = Recado(id=new_id, titulo=titulo, mensagem=mensagem, disciplina_codigo=disciplina_codigo,
+                            professor_id=prof.id, aluno_id=aluno_id_int)
+            recado_service.add_recado(recado)
+            return self.render('recados', modo='professor', minhas_turmas=minhas_turmas, mensagem_sucesso='Recado enviado!', nav_dict=lists.home_logged_nav_bar)
 
     def visualizar_turmas(self):
         prof = self._get_logged_prof()
