@@ -93,7 +93,16 @@ class AlunoController(BaseController):
     def list_tarefas(self):
         aluno_id = request.query.get('aluno_id')
         aluno = self.aluno_model.get_by_id(int(aluno_id)) if aluno_id else None
-        tarefas = self.tarefa_service.get_all()
+        
+        # Filtrar tarefas apenas das disciplinas matriculadas
+        if aluno:
+            disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
+            codigos_matriculados = [d.codigo for d in disciplinas_matriculadas]
+            todas_tarefas = self.tarefa_service.get_all()
+            tarefas = [t for t in todas_tarefas if t.disciplina in codigos_matriculados]
+        else:
+            tarefas = []
+        
         import lists
         return self.render('tarefas', tarefas=tarefas, aluno=aluno, nav_dict=lists.home_logged_nav_bar)
 

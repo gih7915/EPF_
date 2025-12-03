@@ -37,7 +37,7 @@
                 % end
             </div>
             <div class="card-body">
-                <p><strong>👨‍🏫 Professor:</strong> {{disc.docente.name}}</p>
+                <p><strong>👨‍🏫 Professor:</strong> {{disc.docente_id if disc.docente_id else 'A definir'}}</p>
                 <p><strong>⏰ Horário:</strong> {{disc.horario}}</p>
                 <p><strong>📍 Local:</strong> {{disc.local}}</p>
                 <p><strong>📊 Vagas:</strong> {{disc.vagas_ocupadas}}/{{disc.vagas_ofertadas}}

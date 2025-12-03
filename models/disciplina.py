@@ -154,6 +154,8 @@ class DisciplinaModel:
         self._save()
 
     def update(self, disciplina: Disciplina):
+        # Recarrega dados do arquivo para garantir que está atualizado
+        self.disciplinas = self._load()
         for i, d in enumerate(self.disciplinas):
             if d.id == disciplina.id:
                 self.disciplinas[i] = disciplina

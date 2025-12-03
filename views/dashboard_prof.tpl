@@ -47,16 +47,6 @@
         <h2 class="dashboard-title">Minhas Turmas</h2>
         <p class="dashboard-description">Visualize as turmas sob sua responsabilidade e informações dos alunos.</p>
     </a>
-
-    <a href="/avaliar_trabalhos" class="dashboard-card" style="text-decoration: none; color: inherit;">
-        <div class="dashboard-icon">✅</div>
-        <h2 class="dashboard-title">Avaliar Trabalhos</h2>
-        <p class="dashboard-description">Corrija e avalie os trabalhos submetidos pelos alunos.</p>
-    </a>
-
-    
-
-    
 </div>
 
 <div class="card">

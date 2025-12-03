@@ -24,10 +24,12 @@
     "carga_horaria": "60h",
     "horario": "24T23 (18/08/2025 - 15/12/2025)",
     "vagas_ofertadas": 80,
-    "vagas_ocupadas": 78,
+    "vagas_ocupadas": 79,
     "local": "FCTE - S2 / S4",
     "senha": "COMP1-01-2025",
-    "alunos_matriculados": []
+    "alunos_matriculados": [
+      3
+    ]
   },
   {
     "id": 3,
@@ -50,7 +52,7 @@
     "nome": "FUNDAMENTOS DE SISTEMAS OPERACIONAIS",
     "turma": "01",
     "ano_periodo": "2025.2",
-    "docente_id": null,
+    "docente_id": 2,
     "carga_horaria": "60h",
     "horario": "46M34 (18/08/2025 - 15/12/2025)",
     "vagas_ofertadas": 80,
@@ -65,7 +67,7 @@
     "nome": "SISTEMAS DE BANCO DE DADOS 2",
     "turma": "01",
     "ano_periodo": "2025.2",
-    "docente_id": null,
+    "docente_id": 2,
     "carga_horaria": "60h",
     "horario": "35M12 (18/08/2025 - 15/12/2025)",
     "vagas_ofertadas": 80,

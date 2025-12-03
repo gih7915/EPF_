@@ -50,58 +50,166 @@ class ProfController(BaseController):
         if not prof:
             return self.redirect('/login')
         
+        minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+        import lists
+        
         if request.method == 'GET':
-            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
-            return self.render('lancar_notas', minhas_turmas=minhas_turmas, prof=prof)
+            disciplina_codigo = request.query.get('disciplina_codigo')
+            disciplina_selecionada = None
+            alunos = []
+            
+            if disciplina_codigo:
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
+                if disciplina_selecionada:
+                    # Buscar alunos matriculados
+                    from models.aluno import AlunoModel
+                    aluno_model = AlunoModel()
+                    todos_alunos = aluno_model.get_all()
+                    alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados]
+            
+            return self.render('lancar_notas', 
+                             minhas_turmas=minhas_turmas, 
+                             prof=prof,
+                             disciplina_selecionada=disciplina_selecionada,
+                             alunos=alunos,
+                             mensagem=None,
+                             nav_dict=lists.home_logged_nav_bar)
         else:
-            self.redirect('/dashboard_prof')
+            # POST - salvar nota
+            disciplina_codigo = request.forms.get('disciplina_codigo')
+            aluno_id = int(request.forms.get('aluno_id'))
+            avaliacao = request.forms.get('avaliacao')
+            nota = float(request.forms.get('nota'))
+            
+            # Salvar nota no aluno
+            from models.aluno import AlunoModel
+            aluno_model = AlunoModel()
+            aluno = aluno_model.get_by_id(aluno_id)
+            
+            if aluno:
+                aluno.adicionar_nota(disciplina_codigo, nota)
+                aluno_model.update_aluno(aluno)
+                
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
+                todos_alunos = aluno_model.get_all()
+                alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados] if disciplina_selecionada else []
+                
+                return self.render('lancar_notas', 
+                                 minhas_turmas=minhas_turmas, 
+                                 prof=prof,
+                                 disciplina_selecionada=disciplina_selecionada,
+                                 alunos=alunos,
+                                 mensagem=f"Nota {nota} lançada com sucesso para {aluno.name}!",
+                                 nav_dict=lists.home_logged_nav_bar)
+            
+            self.redirect('/lancar_notas')
 
     def lancar_faltas(self):
         prof = self._get_logged_prof()
         if not prof:
             return self.redirect('/login')
         
+        minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+        import lists
+        
         if request.method == 'GET':
-            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
-            return self.render('lancar_faltas', minhas_turmas=minhas_turmas, prof=prof)
+            disciplina_codigo = request.query.get('disciplina_codigo')
+            disciplina_selecionada = None
+            alunos = []
+            
+            if disciplina_codigo:
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
+                if disciplina_selecionada:
+                    # Buscar alunos matriculados
+                    from models.aluno import AlunoModel
+                    aluno_model = AlunoModel()
+                    todos_alunos = aluno_model.get_all()
+                    alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados]
+            
+            return self.render('lancar_faltas', 
+                             minhas_turmas=minhas_turmas, 
+                             prof=prof,
+                             disciplina_selecionada=disciplina_selecionada,
+                             alunos=alunos,
+                             mensagem=None,
+                             nav_dict=lists.home_logged_nav_bar)
         else:
-            self.redirect('/dashboard_prof')
+            # POST - salvar falta
+            disciplina_codigo = request.forms.get('disciplina_codigo')
+            aluno_id = int(request.forms.get('aluno_id'))
+            data = request.forms.get('data')
+            
+            # Salvar falta no aluno
+            from models.aluno import AlunoModel
+            aluno_model = AlunoModel()
+            aluno = aluno_model.get_by_id(aluno_id)
+            
+            if aluno:
+                aluno.registrar_falta(disciplina_codigo, data)
+                aluno_model.update_aluno(aluno)
+                
+                disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
+                todos_alunos = aluno_model.get_all()
+                alunos = [a for a in todos_alunos if a.id in disciplina_selecionada.alunos_matriculados] if disciplina_selecionada else []
+                
+                return self.render('lancar_faltas', 
+                                 minhas_turmas=minhas_turmas, 
+                                 prof=prof,
+                                 disciplina_selecionada=disciplina_selecionada,
+                                 alunos=alunos,
+                                 mensagem=f"Falta registrada com sucesso para {aluno.name} em {data}!",
+                                 nav_dict=lists.home_logged_nav_bar)
+            
+            self.redirect('/lancar_faltas')
 
     def criar_atividade(self):
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        
         if request.method == 'GET':
-            return self.render('criar_atividade')
+            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+            import lists
+            return self.render('criar_atividade', minhas_turmas=minhas_turmas, nav_dict=lists.home_logged_nav_bar)
         else:
             titulo = request.forms.get('titulo')
             descricao = request.forms.get('descricao')
-            disciplina = request.forms.get('disciplina')
+            disciplina_codigo = request.forms.get('disciplina_codigo')
             prazo = request.forms.get('prazo')
 
             last_id = max([t.id for t in self.tarefa_service.get_all()], default=0)
             new_id = last_id + 1
 
             from models.tarefa import Tarefa
-            tarefa = Tarefa(id=new_id, titulo=titulo, descricao=descricao, disciplina=disciplina, prazo=prazo)
+            tarefa = Tarefa(id=new_id, titulo=titulo, descricao=descricao, disciplina=disciplina_codigo, prazo=prazo)
             self.tarefa_service.add_tarefa(tarefa)
 
-            self.redirect('/tarefas')
+            self.redirect('/dashboard_prof')
 
     def postar_videoaula(self):
+        prof = self._get_logged_prof()
+        if not prof:
+            return self.redirect('/login')
+        
         if request.method == 'GET':
-            return self.render('postar_videoaula')
+            minhas_turmas = self.disciplina_service.get_disciplinas_professor(prof.id)
+            import lists
+            return self.render('postar_videoaula', minhas_turmas=minhas_turmas, nav_dict=lists.home_logged_nav_bar)
         else:
             titulo = request.forms.get('titulo')
             url = request.forms.get('link')
-            disciplina = request.forms.get('disciplina')
+            disciplina_codigo = request.forms.get('disciplina_codigo')
             descricao = request.forms.get('descricao')
 
             last_id = max([v.id for v in self.video_service.get_all()], default=0)
             new_id = last_id + 1
 
             from models.videoaula import VideoAula
-            video = VideoAula(id=new_id, titulo=titulo, url=url, descricao=descricao, disciplina=disciplina)
+            video = VideoAula(id=new_id, titulo=titulo, url=url, descricao=descricao, 
+                            disciplina=disciplina_codigo, disciplina_codigo=disciplina_codigo)
             self.video_service.add_video(video)
 
-            self.redirect('/videoaulas')
+            self.redirect('/dashboard_prof')
 
     def enviar_recado(self):
         return self.render('recados')
