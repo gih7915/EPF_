@@ -10,7 +10,7 @@ default_nav_bar = {
 }
 
 home_logged_nav_bar = {
-    'drop|/conta|/editar-conta|/sair': 'drop|Conta|Editar|Sair'
+    'drop|/|/meu_perfil|/sair': 'drop|Conta|Editar|Sair'
 }
 
 cursos = ["Engenharia",

@@ -10,6 +10,12 @@ Fornecer uma base simples, extensível e didática para construção de aplicaç
 
 ---
 
+## 🗃️ Diagrama de Classes
+
+![Diagrama de Classes Simplificado](readme_files/epf.drawio.png)
+
+---
+
 ## 🗂 Estrutura de Pastas
 
 ```bash
