@@ -15,6 +15,23 @@ Fornecer uma base simples, extensível e didática para construção de aplicaç
 ![Diagrama de Classes Simplificado](readme_files/epf.drawio.png)
 
 ---
+## Descrição
+Sistema web para gerenciamento acadêmico
+
+## Funcionalidades
+### Para Alunos:
+- Matricular em disciplinas
+- Assistir videoaulas
+- Enviar atividades
+- Acessar notas e faltas
+
+### Para Professores:
+- Criar atividades
+- Lançar notas
+- Lançar Faltas
+- Criar atividades
+
+---
 
 ## 🗂 Estrutura de Pastas
 
