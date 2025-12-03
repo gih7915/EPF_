@@ -32,7 +32,7 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn-submit">📤 Enviar</button>
-            <a href="/dashboard_prof" class="btn-cancel" style="text-decoration: none;">Voltar</a>
+            <button onclick="window.location.href='/dashboard_prof'" class="btn-cancel" style="text-decoration: none;">Voltar</button>
         </div>
     </form>
     </div>
@@ -57,6 +57,6 @@
     % end
 % end
 <div style="margin-top: 20px; text-align: center;">
-    <a href="/dashboard/aluno" class="btn-cancel" style="text-decoration: none;">🏠 Voltar</a>
+    <button onclick="window.location.href='/dashboard/aluno'" class="btn-cancel" style="text-decoration: none;">🏠 Voltar</button>
 </div>
 % end

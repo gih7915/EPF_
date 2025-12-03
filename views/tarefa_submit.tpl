@@ -24,6 +24,6 @@
     
     <div class="item-actions">
         <button type="submit" class="btn btn-success">Enviar Entrega</button>
-        <a href="/tarefas?aluno_id={{aluno_id}}" class="btn">Cancelar</a>
+        <button onclick="window.location.href='/tarefas?aluno_id={{aluno_id}}'" class="btn">Cancelar</button>
     </div>
 </form>

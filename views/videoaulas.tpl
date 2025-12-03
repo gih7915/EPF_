@@ -12,13 +12,13 @@
         </div>
         <div class="card-body">
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="/videoaulas?aluno_id={{aluno.id}}" 
+                <button onclick="window.location.href='/videoaulas?aluno_id={{aluno.id}}'" 
                    class="btn{{'btn-submit' if not disciplina_selecionada else '-secondary'}}" 
                    style="text-decoration: none;">
                     Todas
-                </a>
+                </button>
                 % for disc in disciplinas_matriculadas:
-                    <a href="/videoaulas?aluno_id={{aluno.id}}&disciplina_codigo={{disc.codigo}}" 
+                    <button onclick="window.location.href='/videoaulas?aluno_id={{aluno.id}}&disciplina_codigo={{disc.codigo}}'" 
                        class="btn{{'btn-submit' if disciplina_selecionada and disciplina_selecionada.codigo == disc.codigo else '-secondary'}}"
                        style="text-decoration: none;">
                         {{disc.codigo}}
@@ -29,9 +29,6 @@
             % if disciplina_selecionada:
                 <div style="margin-top: 15px; padding: 15px; background: var(--light-gray); border-radius: 8px;">
                     <strong>{{disciplina_selecionada.codigo}} - {{disciplina_selecionada.nome}}</strong>
-                    <p style="margin: 5px 0 0 0; color: var(--text-light);">
-                        {{disciplina_selecionada.docente}}
-                    </p>
                 </div>
             % end
         </div>
@@ -50,9 +47,9 @@
                 % end
             </p>
             % if not disciplinas_matriculadas:
-                <a href="/disciplinas?aluno_id={{aluno.id}}" class="btn-submit" style="text-decoration: none; display: inline-block; margin-top: 20px;">
+                <button onclick="window.location.href='/disciplinas?aluno_id={{aluno.id}}'" class="btn-submit" style="text-decoration: none; display: inline-block; margin-top: 20px;">
                     Buscar Disciplinas
-                </a>
+                </button>
             % end
         </div>
     </div>
@@ -93,9 +90,9 @@
                 <p style="margin-bottom: 15px;">{{v.descricao or 'Sem descrição disponível'}}</p>
                 
                 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                    <a href="{{v.url}}" target="_blank" class="btn-submit" style="text-decoration: none;">
+                    <button onclick="window.location.href='{{v.url}}'" target="_blank" class="btn-submit" style="text-decoration: none;">
                         ▶️ Assistir Vídeo
-                    </a>
+                    </button>
                     
                     % if not assistido:
                         <form method="post" action="/videoaulas/watch/{{v.id}}" style="display: inline; margin: 0;">
@@ -117,7 +114,7 @@
 % end
 
 <div style="margin-top: 30px; text-align: center;">
-    <a href="/dashboard/aluno" class="btn-cancel" style="text-decoration: none;">
+    <button onclick="window.location.href='/dashboard/aluno'" class="btn-cancel" style="text-decoration: none;">
         🏠 Voltar ao Dashboard
-    </a>
+    </button>
 </div>

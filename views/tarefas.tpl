@@ -26,9 +26,9 @@
         % if aluno:
             % if str(t.id) in (aluno.entregas or {}):
                 <div class="badge badge-success">✓ Entregue</div>
-                <a href="/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}" class="btn" style="margin-top: 10px;">Reenviar Tarefa</a>
+                <button onclick="window.location.href='/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}'" class="btn" style="margin-top: 10px;">Reenviar Tarefa</button>
             % else:
-                <a href="/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}" class="btn" style="margin-top: 10px;">Entregar Tarefa</a>
+                <button onclick="window.location.href='/tarefas/submit/{{t.id}}?aluno_id={{aluno.id}}'" class="btn" style="margin-top: 10px;">Entregar Tarefa</button>
             % end
         % end
     </div>

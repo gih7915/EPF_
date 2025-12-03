@@ -12,9 +12,9 @@
             <p style="color: var(--text-light); font-size: 1.1em;">
                 Você ainda não está matriculado em nenhuma disciplina.
             </p>
-            <a href="/disciplinas?aluno_id={{aluno_id}}" class="btn-submit" style="text-decoration: none; display: inline-block; margin-top: 20px;">
+            <button onclick="window.location.href='/disciplinas?aluno_id={{aluno_id}}'" class="btn-submit" style="text-decoration: none; display: inline-block; margin-top: 20px;">
                 Buscar Disciplinas
-            </a>
+            </button>
         </div>
     </div>
 % else:
@@ -42,7 +42,7 @@
                       onsubmit="return confirm('Tem certeza que deseja se desmatricular desta disciplina?');">
                     <input type="hidden" name="aluno_id" value="{{aluno_id}}">
                     <button type="submit" class="btn-danger">
-                        ❌ Desmatricular
+                        Desmatricular
                     </button>
                 </form>
             </div>
@@ -51,10 +51,10 @@
 % end
 
 <div style="margin-top: 30px; text-align: center;">
-    <a href="/disciplinas?aluno_id={{aluno_id}}" class="btn-secondary" style="text-decoration: none;">
-        ➕ Buscar Mais Disciplinas
-    </a>
-    <a href="/dashboard/aluno" class="btn-cancel" style="text-decoration: none; margin-left: 10px;">
-        🏠 Voltar ao Dashboard
-    </a>
+    <button onclick="window.location.href='/disciplinas?aluno_id={{aluno_id}}'" class="btn-secondary" style="text-decoration: none;">
+        Buscar Mais Disciplinas
+    </button>
+    <button onclick="window.location.href='/dashboard/aluno'" class="btn-cancel" style="text-decoration: none; margin-left: 10px;">
+        Voltar ao Dashboard
+    </button>
 </div>

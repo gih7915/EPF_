@@ -34,7 +34,7 @@
                         <li><a href={{k}}>{{v}}</a></li>
                     % end
                 % end
-                <li><a href="/sair" style="background-color: rgba(239, 68, 68, 0.2);">🚪 Sair</a></li>
+                <li><a href="/sair" style="background-color: rgba(239, 68, 68, 0.2);">Sair</a></li>
             </ul>
         </div>
     </nav>

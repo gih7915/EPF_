@@ -12,7 +12,7 @@
                value="{{query if 'query' in locals() else ''}}" 
                style="flex: 1; margin-bottom: 0;">
         <button type="submit" class="btn-submit" style="margin: 0;">🔍 Buscar</button>
-        <a href="/disciplinas?aluno_id={{aluno_id}}" class="btn-secondary" style="margin: 0; text-decoration: none; display: inline-block; padding: 12px 28px;">Ver Todas</a>
+        <button onclick="window.location.href='/disciplinas?aluno_id={{aluno_id}}'" class="btn-secondary" style="margin: 0; text-decoration: none; display: inline-block; padding: 12px 28px;">Ver Todas</button>
     </form>
 </div>
 
@@ -52,11 +52,11 @@
                 
                 % if disc.id not in matriculadas_ids and disc.tem_vagas():
                     <div style="margin-top: 15px;">
-                        <a href="/disciplinas/matricular/{{disc.id}}?aluno_id={{aluno_id}}" 
+                        <button onclick="window.location.href='/disciplinas/matricular/{{disc.id}}?aluno_id={{aluno_id}}'" 
                            class="btn-submit" 
                            style="text-decoration: none; display: inline-block;">
                             ✏️ Matricular-se
-                        </a>
+                        </button>
                     </div>
                 % end
             </div>
@@ -65,7 +65,7 @@
 % end
 
 <div style="margin-top: 30px; text-align: center;">
-    <a href="/disciplinas/minhas?aluno_id={{aluno_id}}" class="btn-secondary" style="text-decoration: none;">
+    <button onclick="window.location.href='/disciplinas/minhas?aluno_id={{aluno_id}}'" class="btn-secondary" style="text-decoration: none;">
         📖 Minhas Disciplinas
-    </a>
+    </button>
 </div>
