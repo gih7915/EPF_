@@ -179,10 +179,8 @@ class AlunoController(BaseController):
             # montar lista de entradas de faltas por disciplina
             faltas_entries = []
 
-            # mapa codigo -> disciplina obj para lookup
             disciplinas_map = {d.codigo: d for d in disciplinas_matriculadas}
 
-            # considerar todas as chaves presentes no objeto aluno.faltas
             if aluno:
                 codigo_set = set(list(aluno.faltas.keys()) + [d.codigo for d in disciplinas_matriculadas])
             else:
@@ -201,7 +199,6 @@ class AlunoController(BaseController):
             disciplina_selecionada = None
             if disciplina_codigo and aluno:
                 disciplina_selecionada = next((d for d in disciplinas_matriculadas if d.codigo == disciplina_codigo), None)
-                # filtrar entries
                 faltas_entries = [e for e in faltas_entries if e['codigo'] == disciplina_codigo]
 
             total_faltas = aluno.total_faltas() if aluno else 0

@@ -38,9 +38,7 @@ class Aluno(User):
         self.faltas = faltas or {}
         self.turma = turma
         self.ativo = ativo
-        # Histórico de vídeos assistidos (lista de ids de VideoAula)
         self.videos_assistidos: List[str] = []
-        # Entregas locais: mapa tarefa_id -> submissao_id (ou dados mínimos)
         self.entregas: Dict[str, dict] = {}
 
     def adicionar_nota(self, disciplina: str, nota: float):
@@ -128,10 +126,7 @@ class Aluno(User):
             f"curso='{self.curso}', turma='{self.turma}', ativo={self.ativo})"
         )
 
-
-# Compatibilidade: manter nomes em inglês caso o resto do projeto use-os
 Student = Aluno
-
 
 class AlunoModel:
     FILE_PATH = os.path.join(DATA_DIR, 'alunos.json')
@@ -164,7 +159,6 @@ class AlunoModel:
         self.alunos.append(aluno)
         self._save()
 
-    # compatibilidade com nomes em inglês
     add_student = add_aluno
 
     def update_aluno(self, updated_aluno: Aluno):

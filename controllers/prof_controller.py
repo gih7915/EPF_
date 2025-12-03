@@ -16,13 +16,6 @@ class ProfController(BaseController):
         self.tarefa_service = TarefaService()
         self.video_service = VideoService()
         self.disciplina_service = DisciplinaService()
-    
-    def _get_logged_prof(self):
-        """Helper para obter professor logado via login_controller"""
-        from .login_controller import login_controller
-        if login_controller.user_logged and login_controller.user_logged.entidade.__class__.__name__ == "Prof":
-            return login_controller.user_logged.entidade
-        return None
 
 
     # Rotas Prof
@@ -45,6 +38,13 @@ class ProfController(BaseController):
 
         self.app.route('/perfil_professor', method=['GET', 'POST'], callback=self.perfil_professor)
 
+    
+    def _get_logged_prof(self):
+        from .login_controller import login_controller
+        if login_controller.user_logged and login_controller.user_logged.entidade.__class__.__name__ == "Prof":
+            return login_controller.user_logged.entidade
+        return None
+
     def lancar_notas(self):
         prof = self._get_logged_prof()
         if not prof:
@@ -61,7 +61,6 @@ class ProfController(BaseController):
             if disciplina_codigo:
                 disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
                 if disciplina_selecionada:
-                    # Buscar alunos matriculados
                     from models.aluno import AlunoModel
                     aluno_model = AlunoModel()
                     todos_alunos = aluno_model.get_all()
@@ -81,7 +80,6 @@ class ProfController(BaseController):
             avaliacao = request.forms.get('avaliacao')
             nota = float(request.forms.get('nota'))
             
-            # Salvar nota no aluno
             from models.aluno import AlunoModel
             aluno_model = AlunoModel()
             aluno = aluno_model.get_by_id(aluno_id)
@@ -120,7 +118,6 @@ class ProfController(BaseController):
             if disciplina_codigo:
                 disciplina_selecionada = next((d for d in minhas_turmas if d.codigo == disciplina_codigo), None)
                 if disciplina_selecionada:
-                    # Buscar alunos matriculados
                     from models.aluno import AlunoModel
                     aluno_model = AlunoModel()
                     todos_alunos = aluno_model.get_all()
@@ -139,7 +136,7 @@ class ProfController(BaseController):
             aluno_id = int(request.forms.get('aluno_id'))
             data = request.forms.get('data')
             
-            # Salvar falta no aluno
+            # salva a falta no aluno
             from models.aluno import AlunoModel
             aluno_model = AlunoModel()
             aluno = aluno_model.get_by_id(aluno_id)

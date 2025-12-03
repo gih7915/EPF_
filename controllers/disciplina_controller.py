@@ -18,11 +18,9 @@ class DisciplinaController(BaseController):
         self.app.route('/disciplinas/desmatricular/<disciplina_id:int>', method='POST', callback=self.desmatricular)
 
     def list_disciplinas(self):
-        """Lista todas as disciplinas disponíveis."""
         aluno_id = request.query.get('aluno_id')
         disciplinas = self.disciplina_service.get_all()
         
-        # Marcar disciplinas já matriculadas
         disciplinas_matriculadas = []
         if aluno_id:
             disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
@@ -37,7 +35,6 @@ class DisciplinaController(BaseController):
                          nav_dict=lists.home_logged_nav_bar)
 
     def buscar_disciplinas(self):
-        """Busca disciplinas por código ou nome."""
         aluno_id = request.query.get('aluno_id') or request.forms.get('aluno_id')
         
         if request.method == 'POST':
@@ -50,7 +47,6 @@ class DisciplinaController(BaseController):
             else:
                 disciplinas = self.disciplina_service.get_all()
         
-        # Marcar disciplinas já matriculadas
         if aluno_id:
             disciplinas_matriculadas = self.disciplina_service.get_disciplinas_aluno(int(aluno_id))
             matriculadas_ids = [d.id for d in disciplinas_matriculadas]
@@ -65,7 +61,6 @@ class DisciplinaController(BaseController):
                          nav_dict=lists.home_logged_nav_bar)
 
     def matricular(self, disciplina_id):
-        """Matricula um aluno em uma disciplina."""
         if request.method == 'GET':
             aluno_id = request.query.get('aluno_id')
             disciplina = self.disciplina_service.get_by_id(disciplina_id)
@@ -95,7 +90,6 @@ class DisciplinaController(BaseController):
                                  nav_dict=lists.home_logged_nav_bar)
 
     def minhas_disciplinas(self):
-        """Lista disciplinas em que o aluno está matriculado."""
         aluno_id = request.query.get('aluno_id')
         
         if not aluno_id:
@@ -109,7 +103,6 @@ class DisciplinaController(BaseController):
                          nav_dict=lists.home_logged_nav_bar)
 
     def desmatricular(self, disciplina_id):
-        """Remove matrícula do aluno em uma disciplina."""
         aluno_id = request.forms.get('aluno_id')
         
         try:

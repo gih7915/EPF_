@@ -19,7 +19,7 @@ class LoginController(BaseController):
 
         self.user_class_name = None
     
-    #Rotas de login e sign-up
+    #Rotas de login e signup
     def setup_routes(self):
         self.app.route('/login', method=['GET', 'POST'], callback=self.login)
         self.app.route('/signup', method=['GET', 'POST'], callback=self.signup)
@@ -38,15 +38,12 @@ class LoginController(BaseController):
         
         else:  # POST
             try:
-                # Inject services to avoid circular imports
                 from .prof_controller import prof_controller
                 from .aluno_controller import aluno_controller
                 self.user_logged = Login(self.login_service.check(
                     prof_controller.prof_service,
                     aluno_controller.aluno_service
                 ))
-                
-                # Redirecionar para dashboard específico baseado no tipo de usuário
                 user_type = self.user_logged.entidade.__class__.__name__
                 if user_type == "Prof":
                     self.redirect('/dashboard/professor')
@@ -79,11 +76,11 @@ class LoginController(BaseController):
 
     def home(self):
         if request.method == 'GET':
-            # Redirecionar para login se não estiver autenticado
+            # vai pro login caso não haja usuário logado
             if self.user_logged is None:
                 self.redirect('/login')
             else:
-                # Redirecionar para dashboard apropriado
+                # redireciona para o dashboard correto
                 user_type = self.user_logged.entidade.__class__.__name__
                 if user_type == "Prof":
                     self.redirect('/dashboard/professor')
